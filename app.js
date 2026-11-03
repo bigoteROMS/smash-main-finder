@@ -2,12 +2,48 @@
 const { useState, useEffect, useMemo, useRef } = React;
 
 const STAGES = [
-  { id: "battlefield", name: "Campo de Batalla (Battlefield)", url: "https://ssb.wiki.gallery/images/thumb/7/75/Battlefield_SSBU.png/1200px-Battlefield_SSBU.png" },
-  { id: "final_destination", name: "Destino Final (Final Destination)", url: "https://ssb.wiki.gallery/images/thumb/8/87/Final_Destination_SSBU.png/1200px-Final_Destination_SSBU.png" },
-  { id: "fountain_of_dreams", name: "Fuente de los Sueños (Fountain of Dreams)", url: "https://ssb.wiki.gallery/images/thumb/4/4b/Fountain_of_Dreams_SSBU.png/1200px-Fountain_of_Dreams_SSBU.png" },
-  { id: "hollow_bastion", name: "Bastión Hueco (Hollow Bastion)", url: "https://ssb.wiki.gallery/images/thumb/7/7e/Hollow_Bastion_SSBU.png/1200px-Hollow_Bastion_SSBU.png" },
-  { id: "northern_cave", name: "Cueva del Norte (Northern Cave)", url: "https://ssb.wiki.gallery/images/thumb/2/23/Northern_Cave_SSBU.png/1200px-Northern_Cave_SSBU.png" },
-  { id: "kalos", name: "Liga Pokémon Kalos", url: "https://ssb.wiki.gallery/images/thumb/3/3d/Kalos_Pok%C3%A9mon_League_SSBU.png/1200px-Kalos_Pok%C3%A9mon_League_SSBU.png" }
+  { 
+    id: "battlefield", 
+    name: "Campo de Batalla (Battlefield)", 
+    game: "Super Smash Bros.",
+    url: "https://ssb.wiki.gallery/images/thumb/7/75/Battlefield_SSBU.png/1200px-Battlefield_SSBU.png" 
+  },
+  { 
+    id: "final_destination", 
+    name: "Destino Final (Final Destination)", 
+    game: "Super Smash Bros.",
+    url: "https://ssb.wiki.gallery/images/thumb/8/87/Final_Destination_SSBU.png/1200px-Final_Destination_SSBU.png" 
+  },
+  { 
+    id: "fountain_of_dreams", 
+    name: "Fuente de los Sueños (Fountain of Dreams)", 
+    game: "Kirby",
+    url: "https://ssb.wiki.gallery/images/thumb/4/4b/Fountain_of_Dreams_SSBU.png/1200px-Fountain_of_Dreams_SSBU.png" 
+  },
+  { 
+    id: "hollow_bastion", 
+    name: "Bastión Hueco (Hollow Bastion)", 
+    game: "Kingdom Hearts",
+    url: "https://ssb.wiki.gallery/images/thumb/7/7e/Hollow_Bastion_SSBU.png/1200px-Hollow_Bastion_SSBU.png" 
+  },
+  { 
+    id: "northern_cave", 
+    name: "Cueva del Norte (Northern Cave)", 
+    game: "Final Fantasy VII",
+    url: "https://ssb.wiki.gallery/images/thumb/2/23/Northern_Cave_SSBU.png/1200px-Northern_Cave_SSBU.png" 
+  },
+  { 
+    id: "hyrule_castle", 
+    name: "Castillo de Hyrule (Hyrule Castle)", 
+    game: "The Legend of Zelda",
+    url: "https://ssb.wiki.gallery/images/thumb/0/07/Hyrule_Castle_SSBU.png/1200px-Hyrule_Castle_SSBU.png" 
+  },
+  { 
+    id: "smashville", 
+    name: "Pueblo Smash (Smashville)", 
+    game: "Animal Crossing",
+    url: "https://ssb.wiki.gallery/images/thumb/a/a2/Smashville_SSBU.png/1200px-Smashville_SSBU.png" 
+  }
 ];
 
 // Algoritmo de matching ponderado
@@ -270,9 +306,11 @@ function MainFinderApp() {
   const [selectedArchetypeFilter, setSelectedArchetypeFilter] = useState('All');
   const [modalFighter, setModalFighter] = useState(null);
 
-  // Escenario
+  // Escenario y Brillo de Fondo
   const [currentStageIndex, setCurrentStageIndex] = useState(0);
   const [stageAutoRotate, setStageAutoRotate] = useState(true);
+  const [stageBrightness, setStageBrightness] = useState('vivid'); // 'vivid' | 'balanced' | 'cinema'
+  const [showStageSelector, setShowStageSelector] = useState(false);
 
   const rawQuestions = window.QUESTIONS || [];
   const allCharacters = window.CHARACTERS || [];
@@ -402,19 +440,39 @@ function MainFinderApp() {
   return (
     <div className="min-h-screen text-slate-100 flex flex-col font-sans selection:bg-red-500 selection:text-white relative overflow-x-hidden">
       
-      {/* FONDO ESCENARIO ROTATORIO */}
+      {/* FONDO ESCENARIO ROTATORIO EN ALTA RESOLUCIÓN Y CLARIDAD */}
       <div className="fixed inset-0 z-0 pointer-events-none overflow-hidden">
-        {STAGES.map((stage, idx) => (
-          <div
-            key={stage.id}
-            className={`absolute inset-0 bg-cover bg-center transition-opacity duration-1000 transform scale-105 ${
-              idx === currentStageIndex ? 'opacity-30' : 'opacity-0'
-            }`}
-            style={{ backgroundImage: `url('${stage.url}')`, backgroundAttachment: 'fixed', filter: 'blur(1.5px)' }}
-          />
-        ))}
-        <div className="absolute inset-0 bg-gradient-to-b from-slate-950/90 via-slate-950/75 to-slate-950/95" />
-        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[900px] h-[400px] bg-red-600/15 blur-[150px] rounded-full" />
+        {STAGES.map((stage, idx) => {
+          const isActive = idx === currentStageIndex;
+          const opacityClass = !isActive
+            ? 'opacity-0'
+            : stageBrightness === 'vivid'
+            ? 'opacity-90'
+            : stageBrightness === 'balanced'
+            ? 'opacity-65'
+            : 'opacity-40';
+
+          return (
+            <div
+              key={stage.id}
+              className={`absolute inset-0 bg-cover bg-center transition-opacity duration-700 transform scale-100 ${opacityClass}`}
+              style={{
+                backgroundImage: `url('${stage.url}')`,
+                backgroundAttachment: 'fixed',
+                backgroundPosition: 'center 40%'
+              }}
+            />
+          );
+        })}
+
+        {/* Viñeta suave para asegurar que las tarjetas de texto y botones sigan siendo legibles */}
+        <div className={`absolute inset-0 transition-colors duration-500 ${
+          stageBrightness === 'vivid'
+            ? 'bg-gradient-to-b from-slate-950/40 via-transparent to-slate-950/80'
+            : stageBrightness === 'balanced'
+            ? 'bg-gradient-to-b from-slate-950/65 via-slate-950/45 to-slate-950/85'
+            : 'bg-gradient-to-b from-slate-950/85 via-slate-950/70 to-slate-950/95'
+        }`} />
       </div>
 
       {/* CABECERA CON NUEVAS PESTAÑAS */}
@@ -1171,15 +1229,81 @@ function MainFinderApp() {
         </div>
       )}
 
-      {/* CONTROL FLOTANTE ESCENARIO */}
-      <div className="fixed bottom-3 right-3 z-30">
-        <div className="flex items-center gap-2 px-3 py-1.5 rounded-full bg-slate-950/90 border border-slate-700/80 shadow-2xl backdrop-blur text-xs">
-          <span className="flex h-2 w-2 rounded-full bg-red-500 animate-pulse" />
-          <span className="text-slate-300 font-bold hidden sm:inline">Escenario:</span>
-          <span className="text-amber-300 font-extrabold max-w-[170px] sm:max-w-none truncate">{currentStage.name}</span>
-          <div className="flex items-center gap-1 ml-1 border-l border-slate-700 pl-2">
-            <button onClick={() => setCurrentStageIndex(prev => (prev + 1) % STAGES.length)} title="Siguiente" className="text-slate-400 hover:text-white font-black px-1.5 py-0.5 rounded bg-slate-800 hover:bg-slate-700">⏭</button>
-            <button onClick={() => setStageAutoRotate(!stageAutoRotate)} className={`text-[10px] font-bold px-1.5 py-0.5 rounded ${stageAutoRotate ? 'bg-red-600/30 text-red-300' : 'bg-slate-800 text-slate-400'}`}>
+      {/* PANEL FLOTANTE DE CONTROL Y SELECTOR VISUAL DE ESCENARIOS */}
+      <div className="fixed bottom-3 right-3 z-30 flex flex-col items-end gap-2">
+        {/* Selector Desplegable de Escenarios con Miniaturas */}
+        {showStageSelector && (
+          <div className="p-3 rounded-2xl bg-slate-950/95 border-2 border-red-500/60 shadow-2xl backdrop-blur-md animate-scaleUp max-w-sm w-full space-y-2">
+            <div className="flex items-center justify-between pb-1 border-b border-slate-800">
+              <span className="text-xs font-black text-amber-300 uppercase tracking-wider">Elegir Escenario de Fondo:</span>
+              <button onClick={() => setShowStageSelector(false)} className="text-xs text-slate-400 hover:text-white font-bold">✕</button>
+            </div>
+            
+            <div className="grid grid-cols-2 gap-2 max-h-56 overflow-y-auto no-scrollbar">
+              {STAGES.map((stg, i) => (
+                <button
+                  key={stg.id}
+                  onClick={() => {
+                    setCurrentStageIndex(i);
+                    setStageAutoRotate(false);
+                  }}
+                  className={`relative rounded-xl overflow-hidden border p-1 text-left transition group ${
+                    currentStageIndex === i ? 'border-red-500 shadow-md ring-2 ring-red-500/50' : 'border-slate-800 hover:border-slate-600'
+                  }`}
+                >
+                  <img src={stg.url} alt={stg.name} className="w-full h-14 object-cover rounded-lg group-hover:scale-105 transition" />
+                  <span className="text-[10px] font-bold text-white block mt-1 truncate">{stg.name}</span>
+                </button>
+              ))}
+            </div>
+
+            <div className="pt-1 flex items-center justify-between border-t border-slate-800 text-[11px]">
+              <span className="text-slate-400 font-bold">Brillo:</span>
+              <div className="flex gap-1">
+                {['vivid', 'balanced', 'cinema'].map((b) => (
+                  <button
+                    key={b}
+                    onClick={() => setStageBrightness(b)}
+                    className={`px-2 py-0.5 rounded text-[10px] font-extrabold uppercase transition ${
+                      stageBrightness === b ? 'bg-amber-500 text-slate-950' : 'bg-slate-900 text-slate-400 border border-slate-800'
+                    }`}
+                  >
+                    {b === 'vivid' ? 'Vívido' : b === 'balanced' ? 'Normal' : 'Cine'}
+                  </button>
+                ))}
+              </div>
+            </div>
+          </div>
+        )}
+
+        {/* Barra Flotante Compacta */}
+        <div className="flex items-center gap-2 px-3 py-1.5 rounded-full bg-slate-950/95 border border-slate-700/80 shadow-2xl backdrop-blur text-xs">
+          <button
+            onClick={() => setShowStageSelector(!showStageSelector)}
+            className="flex items-center gap-1.5 hover:text-amber-300 transition"
+            title="Abrir selector de escenarios"
+          >
+            <span className="flex h-2.5 w-2.5 rounded-full bg-red-500 animate-pulse" />
+            <span className="text-slate-400 font-bold hidden sm:inline">Escenario:</span>
+            <span className="text-amber-300 font-extrabold max-w-[150px] sm:max-w-none truncate">{currentStage.name}</span>
+            <span className="text-xs text-slate-400 ml-0.5">▼</span>
+          </button>
+          
+          <div className="flex items-center gap-1 border-l border-slate-700 pl-2">
+            <button
+              onClick={() => setCurrentStageIndex(prev => (prev + 1) % STAGES.length)}
+              title="Siguiente escenario"
+              className="text-slate-300 hover:text-white font-black px-1.5 py-0.5 rounded bg-slate-900 hover:bg-slate-800 border border-slate-800"
+            >
+              ⏭
+            </button>
+            <button
+              onClick={() => setStageAutoRotate(!stageAutoRotate)}
+              title={stageAutoRotate ? "Pausar rotación automática" : "Activar rotación automática"}
+              className={`text-[10px] font-black px-1.5 py-0.5 rounded transition ${
+                stageAutoRotate ? 'bg-red-600/40 text-red-300 border border-red-500/40' : 'bg-slate-900 text-slate-400 border border-slate-800'
+              }`}
+            >
               {stageAutoRotate ? 'Auto' : 'Pausa'}
             </button>
           </div>
