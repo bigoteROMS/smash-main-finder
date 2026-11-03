@@ -1,0 +1,24 @@
+{
+  "name": "Smash Main Finder",
+  "short_name": "Main Finder",
+  "description": "Descubre y valida tu luchador ideal en Super Smash Bros. Ultimate",
+  "start_url": "./index.html",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#070a13",
+  "theme_color": "#dc2626",
+  "icons": [
+    {
+      "src": "icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ]
+}
