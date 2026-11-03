@@ -1,90 +1,99 @@
-// Lógica de Matching, Roster Completo de Smash Ultimate y Escenarios Rotatorios
+// Lógica de Matching Avanzada, Selector de Main Actual y Análisis Comparativo
 const { useState, useEffect, useMemo, useRef } = React;
 
-// Lista de Escenarios de Smash Ultimate para el fondo rotatorio
 const STAGES = [
   {
     id: "battlefield",
     name: "Campo de Batalla (Battlefield)",
     game: "Super Smash Bros. Ultimate",
-    url: "https://ssb.wiki.gallery/images/thumb/7/75/Battlefield_SSBU.png/1200px-Battlefield_SSBU.png",
-    color: "#e11d48"
+    url: "https://ssb.wiki.gallery/images/thumb/7/75/Battlefield_SSBU.png/1200px-Battlefield_SSBU.png"
   },
   {
     id: "final_destination",
     name: "Destino Final (Final Destination)",
     game: "Super Smash Bros. Ultimate",
-    url: "https://ssb.wiki.gallery/images/thumb/8/87/Final_Destination_SSBU.png/1200px-Final_Destination_SSBU.png",
-    color: "#8b5cf6"
+    url: "https://ssb.wiki.gallery/images/thumb/8/87/Final_Destination_SSBU.png/1200px-Final_Destination_SSBU.png"
   },
   {
     id: "fountain_of_dreams",
     name: "Fuente de los Sueños (Fountain of Dreams)",
     game: "Kirby",
-    url: "https://ssb.wiki.gallery/images/thumb/4/4b/Fountain_of_Dreams_SSBU.png/1200px-Fountain_of_Dreams_SSBU.png",
-    color: "#06b6d4"
+    url: "https://ssb.wiki.gallery/images/thumb/4/4b/Fountain_of_Dreams_SSBU.png/1200px-Fountain_of_Dreams_SSBU.png"
   },
   {
     id: "hollow_bastion",
     name: "Bastión Hueco (Hollow Bastion)",
     game: "Kingdom Hearts",
-    url: "https://ssb.wiki.gallery/images/thumb/7/7e/Hollow_Bastion_SSBU.png/1200px-Hollow_Bastion_SSBU.png",
-    color: "#f59e0b"
+    url: "https://ssb.wiki.gallery/images/thumb/7/7e/Hollow_Bastion_SSBU.png/1200px-Hollow_Bastion_SSBU.png"
   },
   {
     id: "northern_cave",
     name: "Cueva del Norte (Northern Cave)",
     game: "Final Fantasy VII",
-    url: "https://ssb.wiki.gallery/images/thumb/2/23/Northern_Cave_SSBU.png/1200px-Northern_Cave_SSBU.png",
-    color: "#10b981"
+    url: "https://ssb.wiki.gallery/images/thumb/2/23/Northern_Cave_SSBU.png/1200px-Northern_Cave_SSBU.png"
   },
   {
     id: "kalos",
     name: "Liga Pokémon Kalos",
     game: "Pokémon X / Y",
-    url: "https://ssb.wiki.gallery/images/thumb/3/3d/Kalos_Pok%C3%A9mon_League_SSBU.png/1200px-Kalos_Pok%C3%A9mon_League_SSBU.png",
-    color: "#3b82f6"
+    url: "https://ssb.wiki.gallery/images/thumb/3/3d/Kalos_Pok%C3%A9mon_League_SSBU.png/1200px-Kalos_Pok%C3%A9mon_League_SSBU.png"
   }
 ];
 
-// Algoritmo de afinidad matemática ponderada
+// Algoritmo de afinidad mejorado para evitar sesgos y maximizar variedad entre los 86 luchadores
 function calculateMatches(userScores, characters) {
   const categories = ['rushdown', 'zoner', 'swordie', 'heavy', 'allrounder', 'tricky', 'fgc'];
   
-  let userMagnitude = 0;
+  // Encontrar la categoría dominante del usuario
+  let maxScore = -999;
+  let dominantCategory = 'allrounder';
   categories.forEach(cat => {
-    userMagnitude += Math.pow(userScores[cat] || 0, 2);
+    const val = userScores[cat] || 0;
+    if (val > maxScore) {
+      maxScore = val;
+      dominantCategory = cat;
+    }
   });
-  userMagnitude = Math.sqrt(userMagnitude) || 1;
 
   const results = characters.map(char => {
-    let dotProduct = 0;
-    let charMagnitude = 0;
+    let matchScore = 0;
+    let totalWeight = 0;
 
     categories.forEach(cat => {
       const u = userScores[cat] || 0;
       const c = char.scores[cat] || 0;
-      dotProduct += u * c;
-      charMagnitude += Math.pow(c, 2);
+      
+      // Si la categoría es importante para el usuario, premiar fuertemente a personajes con alto puntaje en ella
+      if (u > 0) {
+        matchScore += (u * c);
+        totalWeight += (u * 10);
+      }
     });
-    charMagnitude = Math.sqrt(charMagnitude) || 1;
 
-    let cosineSim = dotProduct / (userMagnitude * charMagnitude);
+    let basePercentage = totalWeight > 0 ? (matchScore / totalWeight) * 100 : 70;
 
+    // Bonus si el personaje es especialista puro en la categoría dominante del jugador
+    if (char.scores[dominantCategory] >= 8) {
+      basePercentage += 8;
+    }
+
+    // Penalizar si el personaje no tiene casi nada en lo que el jugador más busca
+    if (char.scores[dominantCategory] <= 2) {
+      basePercentage -= 15;
+    }
+
+    // Ajuste de dificultad según preferencia del usuario
     const userDiffPref = userScores.difficultyPref || 0;
     const charDiff = char.difficultyStars || 1;
-    
-    let diffBonus = 0;
-    if (userDiffPref < 0 && charDiff === 1) diffBonus = 0.07;
-    if (userDiffPref < 0 && charDiff === 3) diffBonus = -0.14;
-    if (userDiffPref > 1 && charDiff >= 2) diffBonus = 0.08;
+    if (userDiffPref < 0 && charDiff === 1) basePercentage += 6;
+    if (userDiffPref < 0 && charDiff === 3) basePercentage -= 12;
+    if (userDiffPref > 1 && charDiff >= 2) basePercentage += 6;
 
-    let finalScore = Math.min(0.99, Math.max(0.40, cosineSim + diffBonus));
-    let matchPercentage = Math.round(finalScore * 100);
+    let finalPercentage = Math.round(Math.min(99, Math.max(45, basePercentage)));
 
     return {
       ...char,
-      matchPercentage
+      matchPercentage: finalPercentage
     };
   });
 
@@ -92,7 +101,7 @@ function calculateMatches(userScores, characters) {
   return results;
 }
 
-// Efectos de sonido Web Audio API
+// Sonidos Web Audio API
 function playSfx(type) {
   try {
     const ctx = new (window.AudioContext || window.webkitAudioContext)();
@@ -104,11 +113,11 @@ function playSfx(type) {
     if (type === 'select') {
       osc.type = 'sine';
       osc.frequency.setValueAtTime(440, ctx.currentTime);
-      osc.frequency.exponentialRampToValueAtTime(880, ctx.currentTime + 0.09);
+      osc.frequency.exponentialRampToValueAtTime(880, ctx.currentTime + 0.08);
       gain.gain.setValueAtTime(0.12, ctx.currentTime);
-      gain.gain.linearRampToValueAtTime(0.01, ctx.currentTime + 0.09);
+      gain.gain.linearRampToValueAtTime(0.01, ctx.currentTime + 0.08);
       osc.start();
-      osc.stop(ctx.currentTime + 0.09);
+      osc.stop(ctx.currentTime + 0.08);
     } else if (type === 'victory') {
       const notes = [261.63, 329.63, 392.00, 523.25, 659.25];
       notes.forEach((freq, idx) => {
@@ -118,10 +127,10 @@ function playSfx(type) {
         g.connect(ctx.destination);
         o.type = 'triangle';
         o.frequency.value = freq;
-        g.gain.setValueAtTime(0.18, ctx.currentTime + idx * 0.08);
-        g.gain.linearRampToValueAtTime(0.001, ctx.currentTime + idx * 0.08 + 0.35);
-        o.start(ctx.currentTime + idx * 0.08);
-        o.stop(ctx.currentTime + idx * 0.08 + 0.4);
+        g.gain.setValueAtTime(0.16, ctx.currentTime + idx * 0.07);
+        g.gain.linearRampToValueAtTime(0.001, ctx.currentTime + idx * 0.07 + 0.35);
+        o.start(ctx.currentTime + idx * 0.07);
+        o.stop(ctx.currentTime + idx * 0.07 + 0.4);
       });
     }
   } catch (e) {}
@@ -129,16 +138,76 @@ function playSfx(type) {
 
 function triggerConfetti() {
   if (window.confetti) {
-    window.confetti({ particleCount: 120, spread: 80, origin: { y: 0.6 } });
+    window.confetti({ particleCount: 110, spread: 80, origin: { y: 0.6 } });
     setTimeout(() => {
-      window.confetti({ particleCount: 80, angle: 60, spread: 60, origin: { x: 0 } });
-      window.confetti({ particleCount: 80, angle: 120, spread: 60, origin: { x: 1 } });
-    }, 280);
+      window.confetti({ particleCount: 70, angle: 60, spread: 60, origin: { x: 0 } });
+      window.confetti({ particleCount: 70, angle: 120, spread: 60, origin: { x: 1 } });
+    }, 250);
   }
 }
 
+// Generador inteligente de explicación de cambio de Main
+function generateSwitchExplanation(currentFighter, recommendedFighter) {
+  if (!currentFighter) return null;
+  
+  if (currentFighter.id === recommendedFighter.id) {
+    return {
+      action: "KEEP",
+      badge: "¡MANTÉN TU MAIN ACTUAL!",
+      badgeClass: "bg-emerald-500/20 text-emerald-300 border-emerald-500/40",
+      headline: `Tus respuestas confirman al 100% que ${currentFighter.name} es tu combatiente ideal.`,
+      text: `Tu instinto de combate, ritmo y preferencias de ejecución están completamente alineados con ${currentFighter.name}. No te conviene cambiar de personaje: lo ideal es que profundices en sus opciones en el juego neutral y pulas tus castigos.`
+    };
+  }
+
+  // Si son diferentes: analizar razones de la recomendación
+  const reasons = [];
+  const statDiffs = {
+    speed: recommendedFighter.stats.speed - currentFighter.stats.speed,
+    power: recommendedFighter.stats.power - currentFighter.stats.power,
+    range: recommendedFighter.stats.range - currentFighter.stats.range,
+    combos: recommendedFighter.stats.combos - currentFighter.stats.combos,
+    recovery: recommendedFighter.stats.recovery - currentFighter.stats.recovery,
+  };
+
+  if (statDiffs.speed >= 12) {
+    reasons.push(`Ganarás mucha más agilidad y velocidad (+${statDiffs.speed}%) para presionar sin sentirte atado.`);
+  } else if (statDiffs.speed <= -15 && recommendedFighter.stats.power > currentFighter.stats.power) {
+    reasons.push(`Cambias velocidad excesiva por un poder de impacto mucho más contundente (+${statDiffs.power}% de potencia).`);
+  }
+
+  if (statDiffs.range >= 15) {
+    reasons.push(`Obtendrás mucho mayor alcance seguro (+${statDiffs.range}%) para golpear sin arriesgar tu propio cuerpo.`);
+  }
+
+  if (recommendedFighter.difficultyStars < currentFighter.difficultyStars) {
+    reasons.push(`Reducirás la frustración técnica: ${recommendedFighter.name} es más consistente y no te exige memorizar secuencias tan complejas como ${currentFighter.name}.`);
+  } else if (recommendedFighter.difficultyStars > currentFighter.difficultyStars) {
+    reasons.push(`Tus respuestas demuestran que estás listo para un personaje con mayor techo técnico y combos más profundos.`);
+  }
+
+  if (recommendedFighter.archetype !== currentFighter.archetype) {
+    reasons.push(`Tu estilo natural es de ${recommendedFighter.archetypeLabel}, mientras que actualmente juegas con un ${currentFighter.archetypeLabel}.`);
+  }
+
+  if (reasons.length === 0) {
+    reasons.push(`${recommendedFighter.name} cubre directamente los puntos ciegos de ${currentFighter.name} en el juego neutral y te dará un soplo de aire fresco.`);
+  }
+
+  return {
+    action: "SWITCH",
+    badge: "¡TE RECOMENDAMOS CAMBIAR DE MAIN!",
+    badgeClass: "bg-amber-500/20 text-amber-300 border-amber-500/50",
+    headline: `Actualmente juegas con ${currentFighter.name}, pero ${recommendedFighter.name} encaja mejor con tu instinto real.`,
+    text: reasons.join(" ")
+  };
+}
+
 function MainFinderApp() {
-  const [currentStep, setCurrentStep] = useState('welcome'); // welcome | quiz | result | roster
+  const [currentStep, setCurrentStep] = useState('welcome'); // welcome | selectCurrent | quiz | result | roster
+  const [selectedCurrentMainId, setSelectedCurrentMainId] = useState(null);
+  const [currentMainSearch, setCurrentMainSearch] = useState('');
+  
   const [questionIndex, setQuestionIndex] = useState(0);
   const [answers, setAnswers] = useState({});
   const [userScores, setUserScores] = useState({
@@ -146,20 +215,18 @@ function MainFinderApp() {
   });
   const [matchResults, setMatchResults] = useState([]);
   
-  // Roster state
+  // Roster
   const [rosterSearch, setRosterSearch] = useState('');
   const [selectedArchetypeFilter, setSelectedArchetypeFilter] = useState('All');
-  const [selectedDifficultyFilter, setSelectedDifficultyFilter] = useState('All');
   const [modalFighter, setModalFighter] = useState(null);
 
-  // Escenario de fondo rotatorio
+  // Escenario
   const [currentStageIndex, setCurrentStageIndex] = useState(0);
   const [stageAutoRotate, setStageAutoRotate] = useState(true);
 
   const questions = window.QUESTIONS || [];
   const allCharacters = window.CHARACTERS || [];
 
-  // Rotación automática de escenarios cada 12 segundos
   useEffect(() => {
     if (!stageAutoRotate) return;
     const interval = setInterval(() => {
@@ -170,14 +237,24 @@ function MainFinderApp() {
 
   const currentStage = STAGES[currentStageIndex];
 
-  const handleStart = () => {
+  // Iniciar flujo: primero preguntar el Main actual
+  const handleStartFlow = () => {
     playSfx('select');
-    setCurrentStep('quiz');
+    setSelectedCurrentMainId(null);
+    setCurrentMainSearch('');
+    setCurrentStep('selectCurrent');
+  };
+
+  // Confirmar Main actual y pasar a preguntas
+  const handleConfirmCurrentMain = (fighterId) => {
+    playSfx('select');
+    setSelectedCurrentMainId(fighterId);
     setQuestionIndex(0);
     setAnswers({});
     setUserScores({
       rushdown: 0, zoner: 0, swordie: 0, heavy: 0, allrounder: 0, tricky: 0, fgc: 0, difficultyPref: 0
     });
+    setCurrentStep('quiz');
   };
 
   const handleSelectOption = (option) => {
@@ -196,7 +273,7 @@ function MainFinderApp() {
     if (questionIndex + 1 < questions.length) {
       setTimeout(() => {
         setQuestionIndex(prev => prev + 1);
-      }, 160);
+      }, 150);
     } else {
       const ranked = calculateMatches(newScores, allCharacters);
       setMatchResults(ranked);
@@ -210,8 +287,17 @@ function MainFinderApp() {
 
   const primaryMatch = matchResults[0] || allCharacters[0];
   const pocketPicks = matchResults.slice(1, 4);
+  const currentFighter = allCharacters.find(c => c.id === selectedCurrentMainId) || null;
+  const switchAdvice = generateSwitchExplanation(currentFighter, primaryMatch);
 
-  // Filtrado de la plantilla de 86 luchadores
+  // Filtrado de personajes en selección de Main actual
+  const currentMainCandidates = useMemo(() => {
+    if (!currentMainSearch.trim()) return allCharacters;
+    const q = currentMainSearch.toLowerCase();
+    return allCharacters.filter(c => c.name.toLowerCase().includes(q) || c.series.toLowerCase().includes(q));
+  }, [allCharacters, currentMainSearch]);
+
+  // Filtrado de Roster
   const filteredRoster = useMemo(() => {
     return allCharacters.filter(c => {
       const q = rosterSearch.toLowerCase();
@@ -219,46 +305,39 @@ function MainFinderApp() {
                             c.series.toLowerCase().includes(q) ||
                             c.archetypeLabel.toLowerCase().includes(q);
       const matchesArch = selectedArchetypeFilter === 'All' || c.archetype === selectedArchetypeFilter;
-      const matchesDiff = selectedDifficultyFilter === 'All' || c.difficulty === selectedDifficultyFilter;
-      return matchesSearch && matchesArch && matchesDiff;
+      return matchesSearch && matchesArch;
     });
-  }, [allCharacters, rosterSearch, selectedArchetypeFilter, selectedDifficultyFilter]);
+  }, [allCharacters, rosterSearch, selectedArchetypeFilter]);
 
   const archetypes = ['All', 'All-Rounder', 'Rushdown', 'Heavyweight', 'Swordie', 'Zoner', 'Tricky', 'FGC', 'Grappler'];
 
   return (
     <div className="min-h-screen text-slate-100 flex flex-col font-sans selection:bg-red-500 selection:text-white relative overflow-x-hidden">
       
-      {/* =========================================================================
-          FONDO DINÁMICO CON ESCENARIOS DE SMASH (BATTLEFIELD, DESTINO FINAL, ETC.)
-         ========================================================================= */}
+      {/* FONDO DINÁMICO ESCENARIOS DE SMASH */}
       <div className="fixed inset-0 z-0 pointer-events-none overflow-hidden">
         {STAGES.map((stage, idx) => (
           <div
             key={stage.id}
             className={`absolute inset-0 bg-cover bg-center transition-opacity duration-1000 transform scale-105 ${
-              idx === currentStageIndex ? 'opacity-35' : 'opacity-0'
+              idx === currentStageIndex ? 'opacity-30' : 'opacity-0'
             }`}
             style={{
               backgroundImage: `url('${stage.url}')`,
               backgroundAttachment: 'fixed',
-              filter: 'blur(1px)'
+              filter: 'blur(1.5px)'
             }}
           />
         ))}
-        {/* Capa de contraste cinematográfica estilo Smash */}
-        <div className="absolute inset-0 bg-gradient-to-b from-slate-950/85 via-slate-950/75 to-slate-950/95" />
+        <div className="absolute inset-0 bg-gradient-to-b from-slate-950/90 via-slate-950/75 to-slate-950/95" />
         <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[900px] h-[400px] bg-red-600/15 blur-[150px] rounded-full" />
-        <div className="absolute bottom-0 right-0 w-[700px] h-[400px] bg-amber-500/10 blur-[150px] rounded-full" />
       </div>
 
-      {/* =========================================================================
-          BARRA DE NAVEGACIÓN SUPERIOR
-         ========================================================================= */}
+      {/* CABECERA */}
       <header className="relative z-30 border-b border-slate-800/80 bg-slate-950/80 backdrop-blur-md sticky top-0">
         <div className="max-w-7xl mx-auto px-4 h-16 flex items-center justify-between">
           <div className="flex items-center gap-3 cursor-pointer select-none" onClick={() => setCurrentStep('welcome')}>
-            <div className="w-10 h-10 rounded-2xl bg-gradient-to-tr from-red-600 via-rose-500 to-amber-500 flex items-center justify-center shadow-lg shadow-red-600/40 font-black text-white text-xl border border-red-400/30 transform hover:scale-105 transition">
+            <div className="w-10 h-10 rounded-2xl bg-gradient-to-tr from-red-600 via-rose-500 to-amber-500 flex items-center justify-center shadow-lg shadow-red-600/40 font-black text-white text-xl border border-red-400/30">
               ⚔️
             </div>
             <div>
@@ -267,10 +346,10 @@ function MainFinderApp() {
                   SMASH MAIN FINDER
                 </span>
                 <span className="text-[10px] uppercase font-extrabold px-2 py-0.5 rounded-full bg-red-600/20 text-red-400 border border-red-500/30">
-                  Ultimate Roster (86)
+                  Ultimate 86
                 </span>
               </div>
-              <p className="text-[11px] text-slate-400 hidden sm:block">Descubre tu combatiente perfecto para Super Smash Bros. Ultimate</p>
+              <p className="text-[11px] text-slate-400 hidden sm:block">Encuentra o valida tu Main en Super Smash Bros. Ultimate</p>
             </div>
           </div>
 
@@ -288,7 +367,7 @@ function MainFinderApp() {
             </button>
             {currentStep !== 'welcome' && (
               <button
-                onClick={handleStart}
+                onClick={handleStartFlow}
                 className="px-3.5 py-1.5 rounded-xl text-xs sm:text-sm font-black transition bg-gradient-to-r from-amber-500 via-orange-500 to-red-500 text-slate-950 hover:brightness-110 shadow-md shadow-amber-500/20 border border-amber-300/40"
               >
                 🔄 Nuevo Test
@@ -298,9 +377,7 @@ function MainFinderApp() {
         </div>
       </header>
 
-      {/* =========================================================================
-          CONTENIDO PRINCIPAL
-         ========================================================================= */}
+      {/* CONTENIDO PRINCIPAL */}
       <main className="relative z-10 flex-1 max-w-7xl w-full mx-auto px-4 py-8 flex flex-col justify-center">
         
         {/* --- PANTALLA 1: BIENVENIDA --- */}
@@ -308,38 +385,33 @@ function MainFinderApp() {
           <div className="max-w-4xl mx-auto text-center space-y-8 animate-fadeIn my-auto">
             <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-slate-900/90 border border-red-500/40 text-red-300 text-xs sm:text-sm font-semibold shadow-lg backdrop-blur">
               <span className="flex h-2.5 w-2.5 rounded-full bg-red-500 animate-ping" />
-              ¡Plantilla Completa de 86 Luchadores de Smash Ultimate!
+              ¡Diagnóstico de Cambio o Mantenimiento de Main!
             </div>
 
             <div className="space-y-3">
               <h1 className="text-4xl sm:text-7xl font-black tracking-tight leading-none text-white drop-shadow-md">
-                ¿Cuál es tu <span className="text-transparent bg-clip-text bg-gradient-to-r from-red-500 via-orange-400 to-amber-300">MAIN</span> en Smash Ultimate?
+                ¿Deberías <span className="text-transparent bg-clip-text bg-gradient-to-r from-red-500 via-orange-400 to-amber-300">Cambiar</span> de Main?
               </h1>
               <p className="text-slate-300 text-base sm:text-xl max-w-2xl mx-auto leading-relaxed">
-                Super Smash Bros. Ultimate cuenta con <strong className="text-amber-400">86 combatientes</strong> únicos. Responde 7 preguntas sobre tus instintos y descubre qué personaje se adapta a tus manos y mente.
+                Dinos a quién juegas actualmente y responde 7 preguntas de combate. Te diremos si te conviene <strong className="text-emerald-400">mantener a tu luchador</strong> o <strong className="text-amber-400">cambiar a uno nuevo</strong> con una comparativa detallada.
               </p>
             </div>
 
-            {/* Galería Rápida de Héroes con Renders Oficiales */}
-            <div className="py-2 flex justify-center items-center gap-2 overflow-x-auto no-scrollbar mask-fade">
+            {/* Galería de personajes */}
+            <div className="py-2 flex justify-center items-center gap-2 overflow-x-auto no-scrollbar">
               {['mario', 'link', 'donkey_kong', 'samus', 'fox', 'pikachu', 'cloud', 'joker', 'sephiroth', 'sora'].map(fid => (
                 <div key={fid} className="w-14 h-14 sm:w-16 sm:h-16 rounded-2xl bg-slate-900/80 border border-slate-700/80 p-1 flex items-center justify-center shrink-0 hover:scale-110 hover:border-red-500 transition duration-200 shadow-md">
-                  <img
-                    src={`https://www.smashbros.com/assets_v2/img/fighter/${fid}/main.png`}
-                    alt={fid}
-                    className="w-full h-full object-contain filter drop-shadow"
-                  />
+                  <img src={`https://www.smashbros.com/assets_v2/img/fighter/${fid}/main.png`} alt={fid} className="w-full h-full object-contain filter drop-shadow" />
                 </div>
               ))}
             </div>
 
-            {/* Botones Principales */}
             <div className="pt-2 flex flex-col sm:flex-row justify-center items-center gap-4">
               <button
-                onClick={handleStart}
+                onClick={handleStartFlow}
                 className="w-full sm:w-auto px-10 py-5 rounded-2xl bg-gradient-to-r from-red-600 via-orange-600 to-amber-500 hover:from-red-500 hover:to-amber-400 text-white font-black text-lg tracking-wider uppercase shadow-2xl shadow-red-600/50 hover:scale-105 active:scale-95 transition-all duration-200 flex items-center justify-center gap-3 border-2 border-red-400/50"
               >
-                <span>¡Comenzar Cuestionario!</span>
+                <span>¡Iniciar Diagnóstico!</span>
                 <span className="text-2xl">➔</span>
               </button>
 
@@ -351,34 +423,90 @@ function MainFinderApp() {
               </button>
             </div>
 
-            {/* Tarjetas de Información */}
             <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 pt-6 text-left">
               <div className="p-4 rounded-2xl bg-slate-900/80 border border-slate-800/90 backdrop-blur">
-                <div className="text-red-400 font-extrabold text-sm mb-1 flex items-center gap-2">
-                  <span>🎯</span> Algoritmo de 7 Dimensiones
-                </div>
-                <p className="text-xs text-slate-400 leading-relaxed">
-                  Evalúa velocidad, rango de armas, estilo de remate, combos y tolerancia a la dificultad.
-                </p>
-              </div>
-
-              <div className="p-4 rounded-2xl bg-slate-900/80 border border-slate-800/90 backdrop-blur">
                 <div className="text-amber-400 font-extrabold text-sm mb-1 flex items-center gap-2">
-                  <span>🎒</span> 3 Pocket Picks de Apoyo
+                  <span>⚖️</span> Comparativa Directa
                 </div>
                 <p className="text-xs text-slate-400 leading-relaxed">
-                  Recibe alternativas secundarias que complementan a tu Main principal ante rivales desfavorables.
+                  Compara los atributos (velocidad, alcance, potencia) de tu Main actual con el recomendado.
                 </p>
               </div>
 
               <div className="p-4 rounded-2xl bg-slate-900/80 border border-slate-800/90 backdrop-blur">
                 <div className="text-emerald-400 font-extrabold text-sm mb-1 flex items-center gap-2">
-                  <span>💡</span> Consejos de Oro para Empezar
+                  <span>🎯</span> Más Diversidad de Resultados
                 </div>
                 <p className="text-xs text-slate-400 leading-relaxed">
-                  Cada uno de los 86 combatientes incluye un consejo táctico directo para ganar desde tus primeras partidas.
+                  Algoritmo reajustado para dar combatientes precisos y variados según tus elecciones exactas.
                 </p>
               </div>
+
+              <div className="p-4 rounded-2xl bg-slate-900/80 border border-slate-800/90 backdrop-blur">
+                <div className="text-blue-400 font-extrabold text-sm mb-1 flex items-center gap-2">
+                  <span>💡</span> Explicación Justificada
+                </div>
+                <p className="text-xs text-slate-400 leading-relaxed">
+                  Te explicamos exactamente el por qué te conviene mantener a tu personaje o cambiarte.
+                </p>
+              </div>
+            </div>
+          </div>
+        )}
+
+        {/* --- PANTALLA 1.5: SELECCIONAR MAIN ACTUAL (PREGUNTA PREVIA) --- */}
+        {currentStep === 'selectCurrent' && (
+          <div className="max-w-3xl mx-auto w-full animate-fadeIn my-auto space-y-5">
+            <div className="bg-slate-950/85 border border-slate-800 p-6 sm:p-7 rounded-3xl shadow-2xl backdrop-blur-md text-center">
+              <span className="text-xs font-black text-amber-400 tracking-widest uppercase mb-1 block">
+                PASO PREVIO AL TEST
+              </span>
+              <h2 className="text-2xl sm:text-3xl font-black text-white mb-2">
+                ¿A quién juegas actualmente en Smash?
+              </h2>
+              <p className="text-slate-400 text-xs sm:text-sm max-w-lg mx-auto">
+                Selecciona al combatiente con el que más horas tienes, o elige "Soy nuevo" si aún no tienes un personaje definido.
+              </p>
+
+              {/* Botón de "Soy nuevo / No tengo main" */}
+              <div className="pt-4 flex flex-col sm:flex-row justify-center gap-3">
+                <button
+                  onClick={() => handleConfirmCurrentMain(null)}
+                  className="px-5 py-2.5 rounded-xl bg-slate-800/80 hover:bg-slate-700 text-slate-200 hover:text-white font-bold text-xs border border-slate-700 transition"
+                >
+                  🌱 Soy nuevo / No tengo ningún Main todavía
+                </button>
+              </div>
+
+              {/* Buscador de personajes */}
+              <div className="mt-5 max-w-md mx-auto">
+                <input
+                  type="text"
+                  placeholder="Buscar tu luchador actual (ej: Mario, Joker, Bowser...)"
+                  value={currentMainSearch}
+                  onChange={(e) => setCurrentMainSearch(e.target.value)}
+                  className="w-full px-4 py-2.5 rounded-xl bg-slate-900 border border-slate-700 text-sm text-white placeholder-slate-500 focus:outline-none focus:border-red-500 transition text-center"
+                />
+              </div>
+            </div>
+
+            {/* Rejilla de selección de luchador actual */}
+            <div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-6 gap-2.5 max-h-[380px] overflow-y-auto p-2 bg-slate-950/60 rounded-2xl border border-slate-850">
+              {currentMainCandidates.map((fighter) => (
+                <button
+                  key={fighter.id}
+                  onClick={() => handleConfirmCurrentMain(fighter.id)}
+                  className="p-2 rounded-xl bg-slate-900/80 hover:bg-slate-800 border border-slate-800 hover:border-amber-400/70 transition flex flex-col items-center text-center group active:scale-95"
+                >
+                  <div className="w-14 h-14 rounded-lg bg-slate-950 p-1 mb-1.5 flex items-center justify-center overflow-hidden border border-slate-800 group-hover:border-amber-400/40">
+                    <img src={fighter.avatarUrl} alt={fighter.name} className="w-full h-full object-contain filter drop-shadow group-hover:scale-110 transition" loading="lazy" />
+                  </div>
+                  <span className="text-xs font-bold text-slate-200 group-hover:text-white truncate w-full">
+                    {fighter.name}
+                  </span>
+                  <span className="text-[10px] text-slate-500 truncate w-full">{fighter.archetype}</span>
+                </button>
+              ))}
             </div>
           </div>
         )}
@@ -386,7 +514,6 @@ function MainFinderApp() {
         {/* --- PANTALLA 2: CUESTIONARIO --- */}
         {currentStep === 'quiz' && questions[questionIndex] && (
           <div className="max-w-2xl mx-auto w-full animate-fadeIn my-auto">
-            {/* Progreso */}
             <div className="mb-6">
               <div className="flex justify-between items-center text-xs font-bold text-slate-400 mb-2">
                 <span className="uppercase tracking-wider">PREGUNTA {questionIndex + 1} DE {questions.length}</span>
@@ -394,13 +521,12 @@ function MainFinderApp() {
               </div>
               <div className="w-full h-3 bg-slate-900/90 rounded-full overflow-hidden p-0.5 border border-slate-800 backdrop-blur">
                 <div
-                  className="h-full bg-gradient-to-r from-red-600 via-orange-500 to-amber-400 rounded-full transition-all duration-300 shadow-sm"
+                  className="h-full bg-gradient-to-r from-red-600 via-orange-500 to-amber-400 rounded-full transition-all duration-300"
                   style={{ width: `${((questionIndex + 1) / questions.length) * 100}%` }}
                 />
               </div>
             </div>
 
-            {/* Pregunta Activa */}
             <div className="bg-slate-950/85 border border-slate-800 p-6 sm:p-7 rounded-3xl shadow-2xl mb-6 backdrop-blur-md">
               <span className="text-xs font-black text-red-400 tracking-widest uppercase mb-1.5 block">
                 {questions[questionIndex].title}
@@ -413,7 +539,6 @@ function MainFinderApp() {
               )}
             </div>
 
-            {/* Opciones */}
             <div className="space-y-3.5">
               {questions[questionIndex].options.map((opt) => (
                 <button
@@ -439,7 +564,6 @@ function MainFinderApp() {
               ))}
             </div>
 
-            {/* Controles de regreso */}
             <div className="mt-6 flex justify-between items-center pt-2">
               <button
                 onClick={() => questionIndex > 0 && setQuestionIndex(prev => prev - 1)}
@@ -459,28 +583,74 @@ function MainFinderApp() {
           </div>
         )}
 
-        {/* --- PANTALLA 3: RESULTADOS (A NEW CHALLENGER APPROACHES!) --- */}
+        {/* --- PANTALLA 3: RESULTADOS Y COMPARATIVA --- */}
         {currentStep === 'result' && (
           <div className="max-w-5xl mx-auto w-full animate-scaleUp space-y-6 my-auto">
-            {/* Banner de Anuncio Estilo Smash Bros */}
-            <div className="text-center space-y-2">
-              <div className="inline-flex items-center gap-2 px-5 py-1.5 rounded-full bg-amber-500/20 border border-amber-500/50 text-amber-300 text-xs font-black tracking-widest uppercase shadow-lg backdrop-blur">
-                <span>💥</span>
-                <span>¡A NEW CHALLENGER APPROACHES!</span>
-                <span>💥</span>
-              </div>
-              <h2 className="text-3xl sm:text-6xl font-black text-white tracking-tight drop-shadow">
-                Tu Main Definitivo es:
-              </h2>
-            </div>
+            
+            {/* Veredicto de Cambio de Main (si tenía luchador previo) */}
+            {switchAdvice && (
+              <div className="bg-slate-950/90 border-2 border-slate-700 p-6 rounded-3xl shadow-2xl backdrop-blur-md space-y-4">
+                <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3">
+                  <div className="flex items-center gap-2.5">
+                    <span className="text-2xl">{switchAdvice.action === 'KEEP' ? '🛡️' : '⚡'}</span>
+                    <span className={`text-xs font-black px-3 py-1 rounded-full border uppercase tracking-wider ${switchAdvice.badgeClass}`}>
+                      {switchAdvice.badge}
+                    </span>
+                  </div>
+                  {currentFighter && (
+                    <span className="text-xs text-slate-400">
+                      Comparando: <strong>{currentFighter.name}</strong> vs <strong>{primaryMatch.name}</strong>
+                    </span>
+                  )}
+                </div>
 
-            {/* Tarjeta Principal del Luchador Ganador */}
+                <div>
+                  <h3 className="text-xl sm:text-2xl font-black text-white mb-1.5">
+                    {switchAdvice.headline}
+                  </h3>
+                  <p className="text-slate-300 text-sm sm:text-base leading-relaxed">
+                    {switchAdvice.text}
+                  </p>
+                </div>
+
+                {/* Comparativa Cara a Cara de Atributos */}
+                {currentFighter && currentFighter.id !== primaryMatch.id && (
+                  <div className="pt-3 border-t border-slate-800">
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                      {/* Tu Main Actual */}
+                      <div className="p-3.5 rounded-2xl bg-slate-900/80 border border-slate-800 flex items-center gap-3">
+                        <div className="w-14 h-14 rounded-xl bg-slate-950 p-1 flex items-center justify-center shrink-0 border border-slate-800">
+                          <img src={currentFighter.avatarUrl} alt={currentFighter.name} className="w-full h-full object-contain" />
+                        </div>
+                        <div className="flex-1 min-w-0">
+                          <span className="text-[10px] font-bold text-slate-400 uppercase">Tu Main Actual</span>
+                          <h4 className="font-extrabold text-white text-base truncate">{currentFighter.name}</h4>
+                          <span className="text-xs text-slate-400">{currentFighter.archetypeLabel}</span>
+                        </div>
+                      </div>
+
+                      {/* Tu Nuevo Match */}
+                      <div className="p-3.5 rounded-2xl bg-gradient-to-r from-red-950/40 to-amber-950/30 border border-red-500/50 flex items-center gap-3">
+                        <div className="w-14 h-14 rounded-xl bg-slate-950 p-1 flex items-center justify-center shrink-0 border border-red-500/40">
+                          <img src={primaryMatch.avatarUrl} alt={primaryMatch.name} className="w-full h-full object-contain" />
+                        </div>
+                        <div className="flex-1 min-w-0">
+                          <span className="text-[10px] font-black text-amber-400 uppercase">Recomendado para ti</span>
+                          <h4 className="font-black text-white text-base truncate">{primaryMatch.name}</h4>
+                          <span className="text-xs text-emerald-400 font-bold">{primaryMatch.matchPercentage}% AFINIDAD</span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                )}
+              </div>
+            )}
+
+            {/* Tarjeta Principal del Personaje */}
             <div className="relative rounded-3xl bg-slate-950/90 border-2 border-red-500/70 shadow-2xl overflow-hidden p-6 sm:p-8 backdrop-blur-md">
               <div className="absolute inset-0 bg-gradient-to-br from-red-600/20 via-amber-600/10 to-transparent pointer-events-none" />
               
               <div className="relative z-10 grid grid-cols-1 md:grid-cols-12 gap-8 items-center">
-                
-                {/* Render Oficial Gigante de Smash */}
                 <div className="md:col-span-5 flex flex-col items-center text-center">
                   <div className="relative w-52 h-52 sm:w-64 sm:h-64 rounded-3xl bg-gradient-to-b from-slate-900 to-slate-950 p-3 border-2 border-slate-700/80 shadow-2xl flex items-center justify-center overflow-hidden group">
                     <img
@@ -501,7 +671,6 @@ function MainFinderApp() {
                   </div>
                 </div>
 
-                {/* Detalles y Justificación de Afinidad */}
                 <div className="md:col-span-7 space-y-4">
                   <div>
                     <span className="text-xs font-extrabold uppercase tracking-wider text-red-400">
@@ -519,7 +688,6 @@ function MainFinderApp() {
                     {primaryMatch.description}
                   </p>
 
-                  {/* Fortalezas Clave */}
                   <div className="space-y-1.5 pt-1">
                     <div className="text-xs font-black text-emerald-400 uppercase tracking-wider flex items-center gap-1">
                       <span>✓</span> Por qué encaja con tu estilo:
@@ -532,15 +700,14 @@ function MainFinderApp() {
                     ))}
                   </div>
 
-                  {/* Consejo de Oro para Principiantes */}
                   <div className="p-4 rounded-2xl bg-amber-500/10 border border-amber-500/30 text-amber-200 text-xs sm:text-sm leading-relaxed">
-                    <span className="font-black text-amber-300 block mb-1">💡 Consejo de oro para novatos:</span>
+                    <span className="font-black text-amber-300 block mb-1">💡 Consejo de oro para tus partidas:</span>
                     {primaryMatch.beginnerTip}
                   </div>
                 </div>
               </div>
 
-              {/* Atributos / Estadísticas */}
+              {/* Estadísticas de combate */}
               <div className="mt-8 pt-6 border-t border-slate-800 relative z-10">
                 <h4 className="text-xs font-black tracking-wider uppercase text-slate-400 mb-4">
                   📊 Atributos de Combate de {primaryMatch.name}
@@ -569,7 +736,7 @@ function MainFinderApp() {
               </div>
             </div>
 
-            {/* Alternativas / Pocket Picks (3 luchadores) */}
+            {/* Alternativas / Pocket Picks */}
             <div className="space-y-3">
               <h4 className="text-sm font-extrabold uppercase tracking-wider text-slate-300 flex items-center gap-2">
                 <span>🎒</span> 3 Pocket Picks Secundarios Recomendados
@@ -585,11 +752,7 @@ function MainFinderApp() {
                     className="p-4 rounded-2xl bg-slate-950/80 border border-slate-800 hover:border-slate-700 transition flex items-center gap-3 backdrop-blur-md"
                   >
                     <div className="w-14 h-14 rounded-xl bg-slate-900 border border-slate-700/80 p-1 flex items-center justify-center shrink-0 overflow-hidden">
-                      <img
-                        src={pocket.avatarUrl}
-                        alt={pocket.name}
-                        className="w-full h-full object-contain filter drop-shadow"
-                      />
+                      <img src={pocket.avatarUrl} alt={pocket.name} className="w-full h-full object-contain filter drop-shadow" />
                     </div>
                     <div className="flex-1 min-w-0">
                       <div className="flex items-center justify-between">
@@ -607,10 +770,10 @@ function MainFinderApp() {
             {/* Acciones */}
             <div className="pt-4 flex flex-wrap justify-center gap-3">
               <button
-                onClick={handleStart}
+                onClick={handleStartFlow}
                 className="px-6 py-3 rounded-xl bg-gradient-to-r from-red-600 via-orange-600 to-amber-500 hover:brightness-110 text-white font-black text-sm shadow-xl shadow-red-600/30 transition border border-red-400/40"
               >
-                🔄 Repetir Cuestionario
+                🔄 Repetir con Otro Main
               </button>
               <button
                 onClick={() => setCurrentStep('roster')}
@@ -620,10 +783,11 @@ function MainFinderApp() {
               </button>
               <button
                 onClick={() => {
-                  navigator.clipboard?.writeText(
-                    `¡Mi Main ideal en Super Smash Bros. Ultimate es ${primaryMatch.name} (${primaryMatch.archetypeLabel}) con un ${primaryMatch.matchPercentage}% de afinidad!`
-                  );
-                  alert(`¡Resultado copiado al portapapeles!\n\n"Mi Main ideal es ${primaryMatch.name} con un ${primaryMatch.matchPercentage}% de afinidad"`);
+                  const msg = switchAdvice
+                    ? `En Smash Ultimate mi Main anterior era ${currentFighter ? currentFighter.name : 'ninguno'}, y el test me recomienda: ${primaryMatch.name} (${primaryMatch.matchPercentage}% afinidad)!`
+                    : `Mi Main ideal en Smash Ultimate es ${primaryMatch.name} con un ${primaryMatch.matchPercentage}% de afinidad!`;
+                  navigator.clipboard?.writeText(msg);
+                  alert(`¡Resultado copiado al portapapeles!\n\n"${msg}"`);
                 }}
                 className="px-5 py-3 rounded-xl bg-slate-950 hover:bg-slate-900 text-slate-300 font-bold text-sm border border-slate-750 transition flex items-center gap-2"
               >
@@ -633,10 +797,9 @@ function MainFinderApp() {
           </div>
         )}
 
-        {/* --- PANTALLA 4: ROSTER COMPLETO DE SMASH ULTIMATE (86 LUCHADORES) --- */}
+        {/* --- PANTALLA 4: ROSTER COMPLETO --- */}
         {currentStep === 'roster' && (
           <div className="space-y-6 animate-fadeIn">
-            {/* Cabecera y Buscador */}
             <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 bg-slate-950/80 p-6 rounded-3xl border border-slate-800 backdrop-blur-md">
               <div>
                 <div className="flex items-center gap-2">
@@ -652,7 +815,6 @@ function MainFinderApp() {
                 </p>
               </div>
 
-              {/* Input de Búsqueda */}
               <div className="relative w-full md:w-80">
                 <input
                   type="text"
@@ -662,17 +824,11 @@ function MainFinderApp() {
                   className="w-full px-4 py-3 rounded-2xl bg-slate-900 border border-slate-700 text-sm text-white placeholder-slate-500 focus:outline-none focus:border-red-500 transition shadow-inner"
                 />
                 {rosterSearch && (
-                  <button
-                    onClick={() => setRosterSearch('')}
-                    className="absolute right-3.5 top-3 text-xs text-slate-400 hover:text-white"
-                  >
-                    ✕
-                  </button>
+                  <button onClick={() => setRosterSearch('')} className="absolute right-3.5 top-3 text-xs text-slate-400 hover:text-white">✕</button>
                 )}
               </div>
             </div>
 
-            {/* Filtros de Arquetipos y Dificultad */}
             <div className="flex flex-wrap items-center gap-2 bg-slate-950/60 p-3 rounded-2xl border border-slate-800/80 backdrop-blur">
               <span className="text-xs font-bold text-slate-400 uppercase tracking-wider mr-1">Arquetipo:</span>
               {archetypes.map((arch) => (
@@ -690,7 +846,6 @@ function MainFinderApp() {
               ))}
             </div>
 
-            {/* Rejilla de los 86 Combatientes */}
             <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-3.5">
               {filteredRoster.map((fighter) => (
                 <div
@@ -699,14 +854,8 @@ function MainFinderApp() {
                   className="rounded-2xl bg-slate-950/80 hover:bg-slate-900 border border-slate-800 hover:border-red-500/60 p-3 shadow-lg transition-all duration-200 hover:-translate-y-1 hover:shadow-red-600/20 cursor-pointer flex flex-col justify-between group backdrop-blur"
                 >
                   <div>
-                    {/* Render */}
                     <div className="w-full h-28 rounded-xl bg-gradient-to-b from-slate-900 to-slate-950 p-1 border border-slate-800 flex items-center justify-center overflow-hidden mb-2 relative">
-                      <img
-                        src={fighter.avatarUrl}
-                        alt={fighter.name}
-                        className="w-full h-full object-contain filter drop-shadow group-hover:scale-110 transition duration-200"
-                        loading="lazy"
-                      />
+                      <img src={fighter.avatarUrl} alt={fighter.name} className="w-full h-full object-contain filter drop-shadow group-hover:scale-110 transition duration-200" loading="lazy" />
                       <span className="absolute bottom-1 right-1 text-[9px] font-black px-1.5 py-0.5 rounded bg-slate-950/80 text-amber-300 border border-slate-800">
                         {'★'.repeat(fighter.difficultyStars)}
                       </span>
@@ -728,25 +877,11 @@ function MainFinderApp() {
                 </div>
               ))}
             </div>
-
-            {filteredRoster.length === 0 && (
-              <div className="text-center py-16 bg-slate-950/70 rounded-3xl border border-slate-800">
-                <p className="text-lg text-slate-400 font-bold">No se encontraron luchadores con ese criterio de búsqueda.</p>
-                <button
-                  onClick={() => { setRosterSearch(''); setSelectedArchetypeFilter('All'); setSelectedDifficultyFilter('All'); }}
-                  className="mt-3 px-4 py-2 rounded-xl bg-red-600 text-white font-bold text-xs"
-                >
-                  Restablecer todos los filtros
-                </button>
-              </div>
-            )}
           </div>
         )}
       </main>
 
-      {/* =========================================================================
-          MODAL DETALLE DE LUCHADOR (AL HACER CLIC EN EL ROSTER)
-         ========================================================================= */}
+      {/* MODAL DETALLE DE LUCHADOR */}
       {modalFighter && (
         <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-950/80 backdrop-blur-md animate-fadeIn" onClick={() => setModalFighter(null)}>
           <div className="relative w-full max-w-2xl bg-slate-950 border-2 border-red-500/60 rounded-3xl p-6 sm:p-8 shadow-2xl space-y-5" onClick={(e) => e.stopPropagation()}>
@@ -771,7 +906,6 @@ function MainFinderApp() {
 
             <p className="text-slate-300 text-sm leading-relaxed">{modalFighter.description}</p>
 
-            {/* Pros & Cons */}
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs">
               <div className="bg-emerald-950/30 border border-emerald-500/30 p-3 rounded-xl">
                 <span className="font-black text-emerald-400 block mb-1">Puntos Fuertes:</span>
@@ -783,7 +917,6 @@ function MainFinderApp() {
               </div>
             </div>
 
-            {/* Consejo */}
             <div className="p-3.5 rounded-xl bg-amber-500/10 border border-amber-500/30 text-amber-200 text-xs">
               <span className="font-black text-amber-300 block mb-0.5">💡 Consejo para principiantes:</span>
               {modalFighter.beginnerTip}
@@ -792,48 +925,27 @@ function MainFinderApp() {
         </div>
       )}
 
-      {/* =========================================================================
-          CONTROL FLOTANTE DEL ESCENARIO DE FONDO (BATTLEFIELD ROTATIVO)
-         ========================================================================= */}
+      {/* CONTROL FLOTANTE DEL ESCENARIO */}
       <div className="fixed bottom-3 right-3 z-30">
         <div className="flex items-center gap-2 px-3 py-1.5 rounded-full bg-slate-950/90 border border-slate-700/80 shadow-2xl backdrop-blur text-xs">
           <span className="flex h-2 w-2 rounded-full bg-red-500 animate-pulse" />
           <span className="text-slate-300 font-bold hidden sm:inline">Escenario:</span>
-          <span className="text-amber-300 font-extrabold max-w-[180px] sm:max-w-none truncate">
-            {currentStage.name}
-          </span>
+          <span className="text-amber-300 font-extrabold max-w-[180px] sm:max-w-none truncate">{currentStage.name}</span>
           <div className="flex items-center gap-1 ml-1 border-l border-slate-700 pl-2">
-            <button
-              onClick={() => setCurrentStageIndex(prev => (prev + 1) % STAGES.length)}
-              title="Cambiar al siguiente escenario"
-              className="text-slate-400 hover:text-white font-black px-1.5 py-0.5 rounded bg-slate-800 hover:bg-slate-700"
-            >
-              ⏭
-            </button>
-            <button
-              onClick={() => setStageAutoRotate(!stageAutoRotate)}
-              title={stageAutoRotate ? "Pausar rotación automática" : "Activar rotación automática"}
-              className={`text-[10px] font-bold px-1.5 py-0.5 rounded ${
-                stageAutoRotate ? 'bg-red-600/30 text-red-300' : 'bg-slate-800 text-slate-400'
-              }`}
-            >
+            <button onClick={() => setCurrentStageIndex(prev => (prev + 1) % STAGES.length)} title="Siguiente escenario" className="text-slate-400 hover:text-white font-black px-1.5 py-0.5 rounded bg-slate-800 hover:bg-slate-700">⏭</button>
+            <button onClick={() => setStageAutoRotate(!stageAutoRotate)} className={`text-[10px] font-bold px-1.5 py-0.5 rounded ${stageAutoRotate ? 'bg-red-600/30 text-red-300' : 'bg-slate-800 text-slate-400'}`}>
               {stageAutoRotate ? 'Auto' : 'Pausa'}
             </button>
           </div>
         </div>
       </div>
 
-      {/* =========================================================================
-          PIE DE PÁGINA
-         ========================================================================= */}
       <footer className="relative z-20 border-t border-slate-800/80 bg-slate-950/90 py-5 text-center text-xs text-slate-500 backdrop-blur">
         <div className="max-w-7xl mx-auto px-4 flex flex-col sm:flex-row items-center justify-between gap-2">
-          <div>
-            Super Smash Bros. Ultimate Main Finder • Los 86 Luchadores y Escenarios Oficiales
-          </div>
+          <div>Super Smash Bros. Ultimate Main Finder • 86 Luchadores y Diagnóstico de Main</div>
           <div className="flex gap-4">
-            <button onClick={handleStart} className="hover:text-slate-300 font-semibold">Test de Afinidad</button>
-            <button onClick={() => setCurrentStep('roster')} className="hover:text-slate-300 font-semibold">Ver Todos los 86</button>
+            <button onClick={handleStartFlow} className="hover:text-slate-300 font-semibold">Test</button>
+            <button onClick={() => setCurrentStep('roster')} className="hover:text-slate-300 font-semibold">Roster</button>
           </div>
         </div>
       </footer>
