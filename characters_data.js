@@ -1,4 +1,4 @@
-// Roster Completo de Super Smash Bros Ultimate (86 Luchadores)
+// Roster Completo de Super Smash Bros Ultimate con Guías de Combate (86 Luchadores)
 window.CHARACTERS = [
   {
     "id": "mario",
@@ -39,7 +39,20 @@ window.CHARACTERS = [
       "Rango cuerpo a cuerpo corto",
       "Le cuesta noquear en porcentajes bajos sin una lectura limpia"
     ],
-    "beginnerTip": "Usa tu Bola de Fuego para acercarte de forma segura y busca el agarre hacia abajo (Down Throw)."
+    "beginnerTip": "Usa tu Bola de Fuego para acercarte de forma segura y busca el agarre hacia abajo (Down Throw).",
+    "killMoves": [
+      "Forward Air (Meteorito)",
+      "Up Smash",
+      "Back Air"
+    ],
+    "oosMove": "Up-B (Super Jump Punch) o Up Smash",
+    "recoveryTip": "Recuperación balanceada: salta en el momento justo y dirígete al borde.",
+    "strongAgainst": [
+      "Estilo flexible adaptable contra cualquier rival"
+    ],
+    "vulnerableTo": [
+      "Especialistas extremos que dominan un área específica"
+    ]
   },
   {
     "id": "donkey_kong",
@@ -80,7 +93,20 @@ window.CHARACTERS = [
       "Blanco gigante para recibir combos eternos",
       "Recuperación vertical muy pobre ante intercepciones"
     ],
-    "beginnerTip": "Lleva al rival en la espalda (Cargo Forward Throw) hacia el borde del escenario para ponerlo en jaque."
+    "beginnerTip": "Lleva al rival en la espalda (Cargo Forward Throw) hacia el borde del escenario para ponerlo en jaque.",
+    "killMoves": [
+      "Giant Punch (B cargado)",
+      "Cargo Throw hacia abismo",
+      "Forward Air (Meteorito)"
+    ],
+    "oosMove": "Up-B giratorio terrestre",
+    "recoveryTip": "Guarda tu salto doble y usa movimientos con súper armadura cerca del borde.",
+    "strongAgainst": [
+      "Luchadores ligeros que mueren a porcentajes tempranos"
+    ],
+    "vulnerableTo": [
+      "Personajes ultra rápidos con combos largos y zoners"
+    ]
   },
   {
     "id": "link",
@@ -121,7 +147,20 @@ window.CHARACTERS = [
       "Movilidad en tierra algo lenta",
       "Requiere coordinar la colocación de objetos para no golpearte a ti mismo"
     ],
-    "beginnerTip": "Lanza el bumerán apuntando hacia arriba: al regresar puede descolocar al rival justo cuando intente atacarte."
+    "beginnerTip": "Lanza el bumerán apuntando hacia arriba: al regresar puede descolocar al rival justo cuando intente atacarte.",
+    "killMoves": [
+      "Disparo/Proyectil cargado",
+      "Forward Smash",
+      "Back Air al borde"
+    ],
+    "oosMove": "Up-B o Neutral Air rápido",
+    "recoveryTip": "Usa bombas o proyectiles en el aire para frenar al rival mientras vuelves.",
+    "strongAgainst": [
+      "Tanques pesados y personajes lentos sin proyectiles"
+    ],
+    "vulnerableTo": [
+      "Rushdown hiper veloces que saltan por encima de los proyectiles"
+    ]
   },
   {
     "id": "samus",
@@ -162,7 +201,20 @@ window.CHARACTERS = [
       "Juego cuerpo a cuerpo más rígido",
       "Su agarre con rayo es lento de castigar si fallas"
     ],
-    "beginnerTip": "Carga tu disparo siempre que el rival esté lejos; tener la esfera cargada te da ventaja psicológica total."
+    "beginnerTip": "Carga tu disparo siempre que el rival esté lejos; tener la esfera cargada te da ventaja psicológica total.",
+    "killMoves": [
+      "Charge Shot completo",
+      "Forward Air en borde",
+      "Back Air"
+    ],
+    "oosMove": "Up-B (Screw Attack con invulnerabilidad)",
+    "recoveryTip": "Usa bombas o proyectiles en el aire para frenar al rival mientras vuelves.",
+    "strongAgainst": [
+      "Tanques pesados y personajes lentos sin proyectiles"
+    ],
+    "vulnerableTo": [
+      "Rushdown hiper veloces que saltan por encima de los proyectiles"
+    ]
   },
   {
     "id": "dark_samus",
@@ -203,7 +255,20 @@ window.CHARACTERS = [
       "Agarre largo y castigable si no aciertas",
       "Velocidad de movimiento en tierra moderada"
     ],
-    "beginnerTip": "Lanza misiles teledirigidos para forzar al oponente a saltar directo a tu disparo cargado."
+    "beginnerTip": "Lanza misiles teledirigidos para forzar al oponente a saltar directo a tu disparo cargado.",
+    "killMoves": [
+      "Charge Shot completo",
+      "Forward Air en borde",
+      "Back Air"
+    ],
+    "oosMove": "Up-B (Screw Attack con invulnerabilidad)",
+    "recoveryTip": "Usa bombas o proyectiles en el aire para frenar al rival mientras vuelves.",
+    "strongAgainst": [
+      "Tanques pesados y personajes lentos sin proyectiles"
+    ],
+    "vulnerableTo": [
+      "Rushdown hiper veloces que saltan por encima de los proyectiles"
+    ]
   },
   {
     "id": "yoshi",
@@ -244,7 +309,20 @@ window.CHARACTERS = [
       "No tiene recuperación con Up-B tradicional",
       "Agarre algo lento"
     ],
-    "beginnerTip": "Aprovecha su Neutral Air (Nair) para salir de los combos enemigos en pleno vuelo."
+    "beginnerTip": "Aprovecha su Neutral Air (Nair) para salir de los combos enemigos en pleno vuelo.",
+    "killMoves": [
+      "Back Air",
+      "Up Smash fuera de escudo",
+      "Forward Smash"
+    ],
+    "oosMove": "Up-B o Neutral Air",
+    "recoveryTip": "Recuperación balanceada: salta en el momento justo y dirígete al borde.",
+    "strongAgainst": [
+      "Estilo flexible adaptable contra cualquier rival"
+    ],
+    "vulnerableTo": [
+      "Especialistas extremos que dominan un área específica"
+    ]
   },
   {
     "id": "kirby",
@@ -285,7 +363,20 @@ window.CHARACTERS = [
       "Muy ligero: vuela con facilidad ante ataques fuertes",
       "Velocidad en tierra bastante baja"
     ],
-    "beginnerTip": "Inhala al enemigo y cópialo; o escúpelo fuera del escenario para arruinarle el regreso."
+    "beginnerTip": "Inhala al enemigo y cópialo; o escúpelo fuera del escenario para arruinarle el regreso.",
+    "killMoves": [
+      "Back Air",
+      "Up Smash fuera de escudo",
+      "Forward Smash"
+    ],
+    "oosMove": "Up-B o Neutral Air",
+    "recoveryTip": "Recuperación balanceada: salta en el momento justo y dirígete al borde.",
+    "strongAgainst": [
+      "Estilo flexible adaptable contra cualquier rival"
+    ],
+    "vulnerableTo": [
+      "Especialistas extremos que dominan un área específica"
+    ]
   },
   {
     "id": "fox",
@@ -326,7 +417,20 @@ window.CHARACTERS = [
       "Muy liviano, un descuido te manda fuera de pantalla",
       "Recuperación lineal fácil de interceptar"
     ],
-    "beginnerTip": "Conecta Dash Attack seguido de Up-Air para castigar aterrizajes."
+    "beginnerTip": "Conecta Dash Attack seguido de Up-Air para castigar aterrizajes.",
+    "killMoves": [
+      "Dash Attack -> Up-Air",
+      "Forward Smash",
+      "Back Air fuera de plataforma"
+    ],
+    "oosMove": "Neutral Air o Up-Smash directo",
+    "recoveryTip": "Varía entre recuperarte alto o directo al borde para no ser predecible.",
+    "strongAgainst": [
+      "Zoners que necesitan tiempo y espacio para colocar proyectiles"
+    ],
+    "vulnerableTo": [
+      "Espadachines con muros de golpes desarticulados"
+    ]
   },
   {
     "id": "pikachu",
@@ -367,7 +471,20 @@ window.CHARACTERS = [
       "Ligero y técnico: exige precisión con los ángulos de Quick Attack",
       "Requiere buena ejecución para noquear"
     ],
-    "beginnerTip": "Usa Thunder Jolt (proyectil eléctrico) mientras corres hacia el rival para atraparlo en su escudo."
+    "beginnerTip": "Usa Thunder Jolt (proyectil eléctrico) mientras corres hacia el rival para atraparlo en su escudo.",
+    "killMoves": [
+      "Dash Attack -> Up-Air",
+      "Forward Smash",
+      "Back Air fuera de plataforma"
+    ],
+    "oosMove": "Neutral Air o Up-Smash directo",
+    "recoveryTip": "Varía entre recuperarte alto o directo al borde para no ser predecible.",
+    "strongAgainst": [
+      "Zoners que necesitan tiempo y espacio para colocar proyectiles"
+    ],
+    "vulnerableTo": [
+      "Espadachines con muros de golpes desarticulados"
+    ]
   },
   {
     "id": "luigi",
@@ -408,7 +525,20 @@ window.CHARACTERS = [
       "Tracción resbaladiza y movilidad aérea lenta",
       "Recuperación vulnerable si le quitan el salto"
     ],
-    "beginnerTip": "Aprende el agarre hacia abajo: a porcentajes bajos puedes encadenar Down Throw -> Down Air -> Nair -> Up-B."
+    "beginnerTip": "Aprende el agarre hacia abajo: a porcentajes bajos puedes encadenar Down Throw -> Down Air -> Nair -> Up-B.",
+    "killMoves": [
+      "Forward Smash cargado",
+      "Side-B (Comando de Agarre)",
+      "Down Air (Meteorito)"
+    ],
+    "oosMove": "Up-B con súper armadura o Neutral Air",
+    "recoveryTip": "Guarda tu salto doble y usa movimientos con súper armadura cerca del borde.",
+    "strongAgainst": [
+      "Luchadores ligeros que mueren a porcentajes tempranos"
+    ],
+    "vulnerableTo": [
+      "Personajes ultra rápidos con combos largos y zoners"
+    ]
   },
   {
     "id": "ness",
@@ -449,7 +579,20 @@ window.CHARACTERS = [
       "La recuperación con PK Thunder requiere puntería a ti mismo",
       "Rango corto sin magia"
     ],
-    "beginnerTip": "Si conectas un PK Fire, corre y agarra al oponente hacia atrás si estás cerca del abismo."
+    "beginnerTip": "Si conectas un PK Fire, corre y agarra al oponente hacia atrás si estás cerca del abismo.",
+    "killMoves": [
+      "Back Throw (mata a partir de 100%)",
+      "PK Flash",
+      "Bate de béisbol (F-Smash)"
+    ],
+    "oosMove": "Neutral Air o Down-B (absorción)",
+    "recoveryTip": "Usa objetos, bloques o teletransportes para alterar tu trayectoria de caída.",
+    "strongAgainst": [
+      "Luchadores convencionales que caen fácil en trampas"
+    ],
+    "vulnerableTo": [
+      "Personajes agresivos que no dan respiro para preparar recursos"
+    ]
   },
   {
     "id": "captain_falcon",
@@ -490,7 +633,20 @@ window.CHARACTERS = [
       "Sin proyectiles defensivos",
       "Up-B lineal fácil de castigar"
     ],
-    "beginnerTip": "Usa Down Throw seguido de Neutral Air (Nair) para combos consistentes."
+    "beginnerTip": "Usa Down Throw seguido de Neutral Air (Nair) para combos consistentes.",
+    "killMoves": [
+      "Knee of Justice (Fair con sweetspot)",
+      "Falcon Punch",
+      "Up Smash"
+    ],
+    "oosMove": "Up-B (Falcon Dive)",
+    "recoveryTip": "Varía entre recuperarte alto o directo al borde para no ser predecible.",
+    "strongAgainst": [
+      "Zoners que necesitan tiempo y espacio para colocar proyectiles"
+    ],
+    "vulnerableTo": [
+      "Espadachines con muros de golpes desarticulados"
+    ]
   },
   {
     "id": "jigglypuff",
@@ -531,7 +687,20 @@ window.CHARACTERS = [
       "El personaje más ligero del juego: muere si le rompen el escudo al instante",
       "Cuerpo a cuerpo en tierra muy débil"
     ],
-    "beginnerTip": "Salta persiguiendo al rival fuera del escenario con Forward-Air hasta que no pueda regresar a la arena."
+    "beginnerTip": "Salta persiguiendo al rival fuera del escenario con Forward-Air hasta que no pueda regresar a la arena.",
+    "killMoves": [
+      "Trampa explosiva / Objeto especial",
+      "Ataque Smash potenciado",
+      "Down Smash en borde"
+    ],
+    "oosMove": "Up-B o Neutral Air",
+    "recoveryTip": "Usa objetos, bloques o teletransportes para alterar tu trayectoria de caída.",
+    "strongAgainst": [
+      "Luchadores convencionales que caen fácil en trampas"
+    ],
+    "vulnerableTo": [
+      "Personajes agresivos que no dan respiro para preparar recursos"
+    ]
   },
   {
     "id": "peach",
@@ -572,7 +741,20 @@ window.CHARACTERS = [
       "Requiere práctica exhaustiva de dedos para flotar al ras",
       "Velocidad de caminata estándar"
     ],
-    "beginnerTip": "Mantén abajo al saltar para flotar a milímetros del piso y golpear con Fair sin despeinarte."
+    "beginnerTip": "Mantén abajo al saltar para flotar a milímetros del piso y golpear con Fair sin despeinarte.",
+    "killMoves": [
+      "Trampa explosiva / Objeto especial",
+      "Ataque Smash potenciado",
+      "Down Smash en borde"
+    ],
+    "oosMove": "Up-B o Neutral Air",
+    "recoveryTip": "Usa objetos, bloques o teletransportes para alterar tu trayectoria de caída.",
+    "strongAgainst": [
+      "Luchadores convencionales que caen fácil en trampas"
+    ],
+    "vulnerableTo": [
+      "Personajes agresivos que no dan respiro para preparar recursos"
+    ]
   },
   {
     "id": "daisy",
@@ -613,7 +795,20 @@ window.CHARACTERS = [
       "Dificultad técnica alta para sacarle el 100%",
       "Ligera ante golpes Smash"
     ],
-    "beginnerTip": "Arranca nabos siempre que el oponente vuele lejos para mantener la presión."
+    "beginnerTip": "Arranca nabos siempre que el oponente vuele lejos para mantener la presión.",
+    "killMoves": [
+      "Trampa explosiva / Objeto especial",
+      "Ataque Smash potenciado",
+      "Down Smash en borde"
+    ],
+    "oosMove": "Up-B o Neutral Air",
+    "recoveryTip": "Usa objetos, bloques o teletransportes para alterar tu trayectoria de caída.",
+    "strongAgainst": [
+      "Luchadores convencionales que caen fácil en trampas"
+    ],
+    "vulnerableTo": [
+      "Personajes agresivos que no dan respiro para preparar recursos"
+    ]
   },
   {
     "id": "bowser",
@@ -654,7 +849,20 @@ window.CHARACTERS = [
       "Enorme tamaño: objetivo fácil para combos largos",
       "Sufre ante personajes que acampan de lejos"
     ],
-    "beginnerTip": "Usa Side-B cuando tu oponente se esconda detrás de su escudo; ¡no se puede bloquear!"
+    "beginnerTip": "Usa Side-B cuando tu oponente se esconda detrás de su escudo; ¡no se puede bloquear!",
+    "killMoves": [
+      "Flying Slam (Side-B)",
+      "Forward Smash brutal",
+      "Bowser Bomb (Down-B)"
+    ],
+    "oosMove": "Up-B giratorio (Whirling Fortress) en el suelo",
+    "recoveryTip": "Guarda tu salto doble y usa movimientos con súper armadura cerca del borde.",
+    "strongAgainst": [
+      "Luchadores ligeros que mueren a porcentajes tempranos"
+    ],
+    "vulnerableTo": [
+      "Personajes ultra rápidos con combos largos y zoners"
+    ]
   },
   {
     "id": "ice_climbers",
@@ -695,7 +903,20 @@ window.CHARACTERS = [
       "Si Nana es derrotada, Popo queda muy débil y sin recuperación",
       "Física de hielo resbaladiza"
     ],
-    "beginnerTip": "Mantén a Nana a salvo: su presencia te da el doble de opciones ofensivas."
+    "beginnerTip": "Mantén a Nana a salvo: su presencia te da el doble de opciones ofensivas.",
+    "killMoves": [
+      "Trampa explosiva / Objeto especial",
+      "Ataque Smash potenciado",
+      "Down Smash en borde"
+    ],
+    "oosMove": "Up-B o Neutral Air",
+    "recoveryTip": "Usa objetos, bloques o teletransportes para alterar tu trayectoria de caída.",
+    "strongAgainst": [
+      "Luchadores convencionales que caen fácil en trampas"
+    ],
+    "vulnerableTo": [
+      "Personajes agresivos que no dan respiro para preparar recursos"
+    ]
   },
   {
     "id": "sheik",
@@ -736,7 +957,20 @@ window.CHARACTERS = [
       "Muy poco poder de noqueo: debe buscar remates específicos en porcentajes altos",
       "Extremadamente ligera"
     ],
-    "beginnerTip": "Usa Forward-Tilt para comenzar combos rápidos en el aire."
+    "beginnerTip": "Usa Forward-Tilt para comenzar combos rápidos en el aire.",
+    "killMoves": [
+      "Dash Attack -> Up-Air",
+      "Forward Smash",
+      "Back Air fuera de plataforma"
+    ],
+    "oosMove": "Neutral Air o Up-Smash directo",
+    "recoveryTip": "Varía entre recuperarte alto o directo al borde para no ser predecible.",
+    "strongAgainst": [
+      "Zoners que necesitan tiempo y espacio para colocar proyectiles"
+    ],
+    "vulnerableTo": [
+      "Espadachines con muros de golpes desarticulados"
+    ]
   },
   {
     "id": "zelda",
@@ -777,7 +1011,20 @@ window.CHARACTERS = [
       "Movimiento muy lento en tierra",
       "Cuerpo frágil ante asedios agresivos"
     ],
-    "beginnerTip": "Carga el Fantasma (Down-B) desde lejos para controlar el paso del oponente."
+    "beginnerTip": "Carga el Fantasma (Down-B) desde lejos para controlar el paso del oponente.",
+    "killMoves": [
+      "Disparo/Proyectil cargado",
+      "Forward Smash",
+      "Back Air al borde"
+    ],
+    "oosMove": "Up-B o Neutral Air rápido",
+    "recoveryTip": "Usa bombas o proyectiles en el aire para frenar al rival mientras vuelves.",
+    "strongAgainst": [
+      "Tanques pesados y personajes lentos sin proyectiles"
+    ],
+    "vulnerableTo": [
+      "Rushdown hiper veloces que saltan por encima de los proyectiles"
+    ]
   },
   {
     "id": "dr_mario",
@@ -818,7 +1065,20 @@ window.CHARACTERS = [
       "Recuperación vertical pésima",
       "Velocidad de carrera lenta"
     ],
-    "beginnerTip": "Aprovecha el Up-B fuera de escudo: sale en fotograma 3 y liquida rivales en el borde."
+    "beginnerTip": "Aprovecha el Up-B fuera de escudo: sale en fotograma 3 y liquida rivales en el borde.",
+    "killMoves": [
+      "Back Air",
+      "Up Smash fuera de escudo",
+      "Forward Smash"
+    ],
+    "oosMove": "Up-B o Neutral Air",
+    "recoveryTip": "Recuperación balanceada: salta en el momento justo y dirígete al borde.",
+    "strongAgainst": [
+      "Estilo flexible adaptable contra cualquier rival"
+    ],
+    "vulnerableTo": [
+      "Especialistas extremos que dominan un área específica"
+    ]
   },
   {
     "id": "pichu",
@@ -859,7 +1119,20 @@ window.CHARACTERS = [
       "El personaje más fácil de noquear si recibe un golpe fuerte",
       "Se autolesiona al atacar"
     ],
-    "beginnerTip": "Usa ataques sin electricidad como Forward-Tilt y agarres para no acumularte daño innecesario."
+    "beginnerTip": "Usa ataques sin electricidad como Forward-Tilt y agarres para no acumularte daño innecesario.",
+    "killMoves": [
+      "Dash Attack -> Up-Air",
+      "Forward Smash",
+      "Back Air fuera de plataforma"
+    ],
+    "oosMove": "Neutral Air o Up-Smash directo",
+    "recoveryTip": "Varía entre recuperarte alto o directo al borde para no ser predecible.",
+    "strongAgainst": [
+      "Zoners que necesitan tiempo y espacio para colocar proyectiles"
+    ],
+    "vulnerableTo": [
+      "Espadachines con muros de golpes desarticulados"
+    ]
   },
   {
     "id": "falco",
@@ -900,7 +1173,20 @@ window.CHARACTERS = [
       "Velocidad de carrera en tierra moderada",
       "Recuperación vulnerable si le leen el Side-B"
     ],
-    "beginnerTip": "Salta alto y usa Down-Air (Dair) para clavar al rival hacia el abismo con un meteorito."
+    "beginnerTip": "Salta alto y usa Down-Air (Dair) para clavar al rival hacia el abismo con un meteorito.",
+    "killMoves": [
+      "Back Air",
+      "Up Smash fuera de escudo",
+      "Forward Smash"
+    ],
+    "oosMove": "Up-B o Neutral Air",
+    "recoveryTip": "Recuperación balanceada: salta en el momento justo y dirígete al borde.",
+    "strongAgainst": [
+      "Estilo flexible adaptable contra cualquier rival"
+    ],
+    "vulnerableTo": [
+      "Especialistas extremos que dominan un área específica"
+    ]
   },
   {
     "id": "marth",
@@ -941,7 +1227,20 @@ window.CHARACTERS = [
       "Si golpeas con el mango de la espada, el daño es muy flojo",
       "Exige espaciado milimétrico"
     ],
-    "beginnerTip": "Mantén la distancia calculada para que solo la punta de tu espada toque al rival."
+    "beginnerTip": "Mantén la distancia calculada para que solo la punta de tu espada toque al rival.",
+    "killMoves": [
+      "Shield Breaker",
+      "Forward Smash",
+      "Dolphin Slash (Up-B)"
+    ],
+    "oosMove": "Up-B (Dolphin Slash, sale en fotograma 1)",
+    "recoveryTip": "Aprovecha el alcance de tu espada para cortar a rivales que intenten interceptarte.",
+    "strongAgainst": [
+      "Luchadores de poco rango y brawlers cuerpo a cuerpo"
+    ],
+    "vulnerableTo": [
+      "Zoners de proyectiles pesados a larga distancia"
+    ]
   },
   {
     "id": "lucina",
@@ -982,7 +1281,20 @@ window.CHARACTERS = [
       "Carece del factor 'sorpresa' del tipper de Marth",
       "Sin proyectiles"
     ],
-    "beginnerTip": "Usa Forward Air retrocediendo para golpear sin arriesgarte jamás."
+    "beginnerTip": "Usa Forward Air retrocediendo para golpear sin arriesgarte jamás.",
+    "killMoves": [
+      "Shield Breaker",
+      "Forward Smash",
+      "Dolphin Slash (Up-B)"
+    ],
+    "oosMove": "Up-B (Dolphin Slash, sale en fotograma 1)",
+    "recoveryTip": "Aprovecha el alcance de tu espada para cortar a rivales que intenten interceptarte.",
+    "strongAgainst": [
+      "Luchadores de poco rango y brawlers cuerpo a cuerpo"
+    ],
+    "vulnerableTo": [
+      "Zoners de proyectiles pesados a larga distancia"
+    ]
   },
   {
     "id": "young_link",
@@ -1023,7 +1335,20 @@ window.CHARACTERS = [
       "Le cuesta cerrar las muertes (Kill power directo bajo)",
       "Ligero"
     ],
-    "beginnerTip": "Dispara flechas de fuego para frenar al enemigo y corre tras él con un Dash Attack."
+    "beginnerTip": "Dispara flechas de fuego para frenar al enemigo y corre tras él con un Dash Attack.",
+    "killMoves": [
+      "Disparo/Proyectil cargado",
+      "Forward Smash",
+      "Back Air al borde"
+    ],
+    "oosMove": "Up-B o Neutral Air rápido",
+    "recoveryTip": "Usa bombas o proyectiles en el aire para frenar al rival mientras vuelves.",
+    "strongAgainst": [
+      "Tanques pesados y personajes lentos sin proyectiles"
+    ],
+    "vulnerableTo": [
+      "Rushdown hiper veloces que saltan por encima de los proyectiles"
+    ]
   },
   {
     "id": "ganondorf",
@@ -1064,7 +1389,20 @@ window.CHARACTERS = [
       "La peor movilidad y una de las peores recuperaciones del juego",
       "Fácil de torear con proyectiles"
     ],
-    "beginnerTip": "Usa Forward Smash cargado para castigar cuando el oponente ruede predeciblemente hacia ti."
+    "beginnerTip": "Usa Forward Smash cargado para castigar cuando el oponente ruede predeciblemente hacia ti.",
+    "killMoves": [
+      "Forward Smash cargado",
+      "Side-B (Comando de Agarre)",
+      "Down Air (Meteorito)"
+    ],
+    "oosMove": "Up-B con súper armadura o Neutral Air",
+    "recoveryTip": "Guarda tu salto doble y usa movimientos con súper armadura cerca del borde.",
+    "strongAgainst": [
+      "Luchadores ligeros que mueren a porcentajes tempranos"
+    ],
+    "vulnerableTo": [
+      "Personajes ultra rápidos con combos largos y zoners"
+    ]
   },
   {
     "id": "mewtwo",
@@ -1105,7 +1443,20 @@ window.CHARACTERS = [
       "Su cola grande es parte de su hitbox y recibe golpes",
       "Sorprendentemente ligero a pesar de su tamaño"
     ],
-    "beginnerTip": "Carga Shadow Ball para forzar al rival a saltar directo a los golpes de tu cola."
+    "beginnerTip": "Carga Shadow Ball para forzar al rival a saltar directo a los golpes de tu cola.",
+    "killMoves": [
+      "Disparo/Proyectil cargado",
+      "Forward Smash",
+      "Back Air al borde"
+    ],
+    "oosMove": "Up-B o Neutral Air rápido",
+    "recoveryTip": "Usa bombas o proyectiles en el aire para frenar al rival mientras vuelves.",
+    "strongAgainst": [
+      "Tanques pesados y personajes lentos sin proyectiles"
+    ],
+    "vulnerableTo": [
+      "Rushdown hiper veloces que saltan por encima de los proyectiles"
+    ]
   },
   {
     "id": "roy",
@@ -1146,7 +1497,20 @@ window.CHARACTERS = [
       "Débil si lo mantienen al extremo del alcance",
       "Recuperación con Up-B vulnerable a interrupciones"
     ],
-    "beginnerTip": "Acércate sin miedo: Jab (golpe rápido neutro) conecta directamente con Back Air para matar."
+    "beginnerTip": "Acércate sin miedo: Jab (golpe rápido neutro) conecta directamente con Back Air para matar.",
+    "killMoves": [
+      "Dash Attack -> Up-Air",
+      "Forward Smash",
+      "Back Air fuera de plataforma"
+    ],
+    "oosMove": "Neutral Air o Up-Smash directo",
+    "recoveryTip": "Varía entre recuperarte alto o directo al borde para no ser predecible.",
+    "strongAgainst": [
+      "Zoners que necesitan tiempo y espacio para colocar proyectiles"
+    ],
+    "vulnerableTo": [
+      "Espadachines con muros de golpes desarticulados"
+    ]
   },
   {
     "id": "chrom",
@@ -1186,7 +1550,20 @@ window.CHARACTERS = [
     "cons": [
       "Su recuperación vertical con Soaring Slash es muy fácil de interceptar si cae lejos"
     ],
-    "beginnerTip": "Mantén el ritmo ofensivo en la plataforma para no tener que salir del escenario a recuperarte."
+    "beginnerTip": "Mantén el ritmo ofensivo en la plataforma para no tener que salir del escenario a recuperarte.",
+    "killMoves": [
+      "Forward Smash (Corte Potente)",
+      "Back Air (Golpe de Espalda)",
+      "Up-Air en Techo"
+    ],
+    "oosMove": "Up-B o Shield Grab (Agarre tras bloqueo)",
+    "recoveryTip": "Aprovecha el alcance de tu espada para cortar a rivales que intenten interceptarte.",
+    "strongAgainst": [
+      "Luchadores de poco rango y brawlers cuerpo a cuerpo"
+    ],
+    "vulnerableTo": [
+      "Zoners de proyectiles pesados a larga distancia"
+    ]
   },
   {
     "id": "mr_game_and_watch",
@@ -1227,7 +1604,20 @@ window.CHARACTERS = [
       "Extremadamente ligero: vuela fácil con un golpe fuerte",
       "Animaciones 2D que a veces confunden tu propia distancia"
     ],
-    "beginnerTip": "Si el oponente golpea tu escudo, presiona Up-B inmediatamente para castigarlo sin riesgo."
+    "beginnerTip": "Si el oponente golpea tu escudo, presiona Up-B inmediatamente para castigarlo sin riesgo.",
+    "killMoves": [
+      "Trampa explosiva / Objeto especial",
+      "Ataque Smash potenciado",
+      "Down Smash en borde"
+    ],
+    "oosMove": "Up-B o Neutral Air",
+    "recoveryTip": "Usa objetos, bloques o teletransportes para alterar tu trayectoria de caída.",
+    "strongAgainst": [
+      "Luchadores convencionales que caen fácil en trampas"
+    ],
+    "vulnerableTo": [
+      "Personajes agresivos que no dan respiro para preparar recursos"
+    ]
   },
   {
     "id": "meta_knight",
@@ -1268,7 +1658,20 @@ window.CHARACTERS = [
       "Rango de espada muy corto",
       "Poco daño por golpe individual"
     ],
-    "beginnerTip": "Atrapa al rival con Dash Attack y encadena Up-Airs saltando hasta el límite superior de la pantalla."
+    "beginnerTip": "Atrapa al rival con Dash Attack y encadena Up-Airs saltando hasta el límite superior de la pantalla.",
+    "killMoves": [
+      "Dash Attack -> Up-Air",
+      "Forward Smash",
+      "Back Air fuera de plataforma"
+    ],
+    "oosMove": "Neutral Air o Up-Smash directo",
+    "recoveryTip": "Varía entre recuperarte alto o directo al borde para no ser predecible.",
+    "strongAgainst": [
+      "Zoners que necesitan tiempo y espacio para colocar proyectiles"
+    ],
+    "vulnerableTo": [
+      "Espadachines con muros de golpes desarticulados"
+    ]
   },
   {
     "id": "pit",
@@ -1309,7 +1712,20 @@ window.CHARACTERS = [
       "No destaca en potencia extrema en ningún área particular",
       "Kill power dependiente de Forward Smash"
     ],
-    "beginnerTip": "Dispara flechas al rival cuando intente recuperarse hacia el borde para molestarlo."
+    "beginnerTip": "Dispara flechas al rival cuando intente recuperarse hacia el borde para molestarlo.",
+    "killMoves": [
+      "Back Air",
+      "Up Smash fuera de escudo",
+      "Forward Smash"
+    ],
+    "oosMove": "Up-B o Neutral Air",
+    "recoveryTip": "Recuperación balanceada: salta en el momento justo y dirígete al borde.",
+    "strongAgainst": [
+      "Estilo flexible adaptable contra cualquier rival"
+    ],
+    "vulnerableTo": [
+      "Especialistas extremos que dominan un área específica"
+    ]
   },
   {
     "id": "dark_pit",
@@ -1349,7 +1765,20 @@ window.CHARACTERS = [
     "cons": [
       "Menos control de curva con sus flechas que Pit"
     ],
-    "beginnerTip": "Usa su Side-B (Brazo Electro) para castigar rodadas predecibles cerca de la línea lateral."
+    "beginnerTip": "Usa su Side-B (Brazo Electro) para castigar rodadas predecibles cerca de la línea lateral.",
+    "killMoves": [
+      "Back Air",
+      "Up Smash fuera de escudo",
+      "Forward Smash"
+    ],
+    "oosMove": "Up-B o Neutral Air",
+    "recoveryTip": "Recuperación balanceada: salta en el momento justo y dirígete al borde.",
+    "strongAgainst": [
+      "Estilo flexible adaptable contra cualquier rival"
+    ],
+    "vulnerableTo": [
+      "Especialistas extremos que dominan un área específica"
+    ]
   },
   {
     "id": "zero_suit_samus",
@@ -1390,7 +1819,20 @@ window.CHARACTERS = [
       "Sus ataques Smash son arriesgados si no contactan",
       "Requiere mucha precisión aérea"
     ],
-    "beginnerTip": "Aturde con la pistola paralizadora (Neutral-B) y conecta un Forward Smash a placer."
+    "beginnerTip": "Aturde con la pistola paralizadora (Neutral-B) y conecta un Forward Smash a placer.",
+    "killMoves": [
+      "Dash Attack -> Up-Air",
+      "Forward Smash",
+      "Back Air fuera de plataforma"
+    ],
+    "oosMove": "Neutral Air o Up-Smash directo",
+    "recoveryTip": "Varía entre recuperarte alto o directo al borde para no ser predecible.",
+    "strongAgainst": [
+      "Zoners que necesitan tiempo y espacio para colocar proyectiles"
+    ],
+    "vulnerableTo": [
+      "Espadachines con muros de golpes desarticulados"
+    ]
   },
   {
     "id": "wario",
@@ -1431,7 +1873,20 @@ window.CHARACTERS = [
       "Rango cuerpo a cuerpo corto",
       "Depende de la recarga del Waft para liquidar consistentemente"
     ],
-    "beginnerTip": "Come objetos o partes de tu moto con la mordida (Neutral-B) para recargar el gas más rápido."
+    "beginnerTip": "Come objetos o partes de tu moto con la mordida (Neutral-B) para recargar el gas más rápido.",
+    "killMoves": [
+      "Trampa explosiva / Objeto especial",
+      "Ataque Smash potenciado",
+      "Down Smash en borde"
+    ],
+    "oosMove": "Up-B o Neutral Air",
+    "recoveryTip": "Usa objetos, bloques o teletransportes para alterar tu trayectoria de caída.",
+    "strongAgainst": [
+      "Luchadores convencionales que caen fácil en trampas"
+    ],
+    "vulnerableTo": [
+      "Personajes agresivos que no dan respiro para preparar recursos"
+    ]
   },
   {
     "id": "snake",
@@ -1472,7 +1927,20 @@ window.CHARACTERS = [
       "Fácil de comboear por su peso y tamaño",
       "Requiere memorizar dónde dejaste el C4"
     ],
-    "beginnerTip": "Saca granadas para interrumpir los combos del rival: si te golpean, la granada explota sobre ambos y te salva."
+    "beginnerTip": "Saca granadas para interrumpir los combos del rival: si te golpean, la granada explota sobre ambos y te salva.",
+    "killMoves": [
+      "Disparo/Proyectil cargado",
+      "Forward Smash",
+      "Back Air al borde"
+    ],
+    "oosMove": "Up-B o Neutral Air rápido",
+    "recoveryTip": "Usa bombas o proyectiles en el aire para frenar al rival mientras vuelves.",
+    "strongAgainst": [
+      "Tanques pesados y personajes lentos sin proyectiles"
+    ],
+    "vulnerableTo": [
+      "Rushdown hiper veloces que saltan por encima de los proyectiles"
+    ]
   },
   {
     "id": "ike",
@@ -1513,7 +1981,20 @@ window.CHARACTERS = [
       "Velocidad de ataque más pausada",
       "Recuperación vulnerable si le esperan en el borde"
     ],
-    "beginnerTip": "Usa Neutral Air (salto + golpe neutral) para golpear al caer y conecta inmediatamente con Up-Air."
+    "beginnerTip": "Usa Neutral Air (salto + golpe neutral) para golpear al caer y conecta inmediatamente con Up-Air.",
+    "killMoves": [
+      "Forward Smash (Corte Potente)",
+      "Back Air (Golpe de Espalda)",
+      "Up-Air en Techo"
+    ],
+    "oosMove": "Up-B o Shield Grab (Agarre tras bloqueo)",
+    "recoveryTip": "Aprovecha el alcance de tu espada para cortar a rivales que intenten interceptarte.",
+    "strongAgainst": [
+      "Luchadores de poco rango y brawlers cuerpo a cuerpo"
+    ],
+    "vulnerableTo": [
+      "Zoners de proyectiles pesados a larga distancia"
+    ]
   },
   {
     "id": "pokemon_trainer",
@@ -1554,7 +2035,20 @@ window.CHARACTERS = [
       "Debes aprender las propiedades de 3 personajes diferentes",
       "Cambiar de Pokémon en mal momento te deja vulnerable"
     ],
-    "beginnerTip": "Empieza con Squirtle para acumular daño rápido, pasa a Ivysaur en medio y remata con Charizard."
+    "beginnerTip": "Empieza con Squirtle para acumular daño rápido, pasa a Ivysaur en medio y remata con Charizard.",
+    "killMoves": [
+      "Back Air",
+      "Up Smash fuera de escudo",
+      "Forward Smash"
+    ],
+    "oosMove": "Up-B o Neutral Air",
+    "recoveryTip": "Recuperación balanceada: salta en el momento justo y dirígete al borde.",
+    "strongAgainst": [
+      "Estilo flexible adaptable contra cualquier rival"
+    ],
+    "vulnerableTo": [
+      "Especialistas extremos que dominan un área específica"
+    ]
   },
   {
     "id": "diddy_kong",
@@ -1595,7 +2089,20 @@ window.CHARACTERS = [
       "Los barriles cohete de Up-B pueden explotar si te golpean",
       "Kill power dependiente de la cáscara de plátano"
     ],
-    "beginnerTip": "Saca tu plátano con Down-B, tíralo al rival para que resbale y conecta un Forward Smash libre."
+    "beginnerTip": "Saca tu plátano con Down-B, tíralo al rival para que resbale y conecta un Forward Smash libre.",
+    "killMoves": [
+      "Dash Attack -> Up-Air",
+      "Forward Smash",
+      "Back Air fuera de plataforma"
+    ],
+    "oosMove": "Neutral Air o Up-Smash directo",
+    "recoveryTip": "Varía entre recuperarte alto o directo al borde para no ser predecible.",
+    "strongAgainst": [
+      "Zoners que necesitan tiempo y espacio para colocar proyectiles"
+    ],
+    "vulnerableTo": [
+      "Espadachines con muros de golpes desarticulados"
+    ]
   },
   {
     "id": "lucas",
@@ -1635,7 +2142,20 @@ window.CHARACTERS = [
     "cons": [
       "Recuperación con PK Thunder puede ser absorbida o bloqueada"
     ],
-    "beginnerTip": "Lanza PK Freeze cuando el oponente esté volando fuera de la arena para congelarlo sin remedio."
+    "beginnerTip": "Lanza PK Freeze cuando el oponente esté volando fuera de la arena para congelarlo sin remedio.",
+    "killMoves": [
+      "Trampa explosiva / Objeto especial",
+      "Ataque Smash potenciado",
+      "Down Smash en borde"
+    ],
+    "oosMove": "Up-B o Neutral Air",
+    "recoveryTip": "Usa objetos, bloques o teletransportes para alterar tu trayectoria de caída.",
+    "strongAgainst": [
+      "Luchadores convencionales que caen fácil en trampas"
+    ],
+    "vulnerableTo": [
+      "Personajes agresivos que no dan respiro para preparar recursos"
+    ]
   },
   {
     "id": "sonic",
@@ -1676,7 +2196,20 @@ window.CHARACTERS = [
       "Rango cuerpo a cuerpo corto",
       "Requiere paciencia para encontrar aperturas de noqueo"
     ],
-    "beginnerTip": "Carga el Spin Dash (Down-B), golpea y salta inmediatamente con Neutral-Air o Fair."
+    "beginnerTip": "Carga el Spin Dash (Down-B), golpea y salta inmediatamente con Neutral-Air o Fair.",
+    "killMoves": [
+      "Dash Attack -> Up-Air",
+      "Forward Smash",
+      "Back Air fuera de plataforma"
+    ],
+    "oosMove": "Neutral Air o Up-Smash directo",
+    "recoveryTip": "Varía entre recuperarte alto o directo al borde para no ser predecible.",
+    "strongAgainst": [
+      "Zoners que necesitan tiempo y espacio para colocar proyectiles"
+    ],
+    "vulnerableTo": [
+      "Espadachines con muros de golpes desarticulados"
+    ]
   },
   {
     "id": "king_dedede",
@@ -1717,7 +2250,20 @@ window.CHARACTERS = [
       "El Gordo puede ser devuelto por cualquier ataque rival",
       "Blanco enorme para combos"
     ],
-    "beginnerTip": "Lanza el Gordo en diagonal baja cuando el oponente intente agarrarse del borde."
+    "beginnerTip": "Lanza el Gordo en diagonal baja cuando el oponente intente agarrarse del borde.",
+    "killMoves": [
+      "Forward Smash cargado",
+      "Side-B (Comando de Agarre)",
+      "Down Air (Meteorito)"
+    ],
+    "oosMove": "Up-B con súper armadura o Neutral Air",
+    "recoveryTip": "Guarda tu salto doble y usa movimientos con súper armadura cerca del borde.",
+    "strongAgainst": [
+      "Luchadores ligeros que mueren a porcentajes tempranos"
+    ],
+    "vulnerableTo": [
+      "Personajes ultra rápidos con combos largos y zoners"
+    ]
   },
   {
     "id": "olimar",
@@ -1758,7 +2304,20 @@ window.CHARACTERS = [
       "Completamente inofensivo si se queda sin Pikmin",
       "Muy ligero y diminuto"
     ],
-    "beginnerTip": "Mantén siempre 3 Pikmin arrancados y usa a los morados para rematar con ataques Smash."
+    "beginnerTip": "Mantén siempre 3 Pikmin arrancados y usa a los morados para rematar con ataques Smash.",
+    "killMoves": [
+      "Disparo/Proyectil cargado",
+      "Forward Smash",
+      "Back Air al borde"
+    ],
+    "oosMove": "Up-B o Neutral Air rápido",
+    "recoveryTip": "Usa bombas o proyectiles en el aire para frenar al rival mientras vuelves.",
+    "strongAgainst": [
+      "Tanques pesados y personajes lentos sin proyectiles"
+    ],
+    "vulnerableTo": [
+      "Rushdown hiper veloces que saltan por encima de los proyectiles"
+    ]
   },
   {
     "id": "lucario",
@@ -1798,7 +2357,20 @@ window.CHARACTERS = [
     "cons": [
       "Al 0% de daño sus ataques son débiles y noquea con dificultad"
     ],
-    "beginnerTip": "No temas recibir algo de daño: con el aura activa tus ataques mandan a volar a cualquiera."
+    "beginnerTip": "No temas recibir algo de daño: con el aura activa tus ataques mandan a volar a cualquiera.",
+    "killMoves": [
+      "Back Air",
+      "Up Smash fuera de escudo",
+      "Forward Smash"
+    ],
+    "oosMove": "Up-B o Neutral Air",
+    "recoveryTip": "Recuperación balanceada: salta en el momento justo y dirígete al borde.",
+    "strongAgainst": [
+      "Estilo flexible adaptable contra cualquier rival"
+    ],
+    "vulnerableTo": [
+      "Especialistas extremos que dominan un área específica"
+    ]
   },
   {
     "id": "r_o_b",
@@ -1838,7 +2410,20 @@ window.CHARACTERS = [
     "cons": [
       "Tamaño ancho que recibe proyectiles fácilmente"
     ],
-    "beginnerTip": "Lanza la peonza al piso para cortar el paso del rival y hostígalo con el rayo láser."
+    "beginnerTip": "Lanza la peonza al piso para cortar el paso del rival y hostígalo con el rayo láser.",
+    "killMoves": [
+      "Back Air",
+      "Up Smash fuera de escudo",
+      "Forward Smash"
+    ],
+    "oosMove": "Up-B o Neutral Air",
+    "recoveryTip": "Recuperación balanceada: salta en el momento justo y dirígete al borde.",
+    "strongAgainst": [
+      "Estilo flexible adaptable contra cualquier rival"
+    ],
+    "vulnerableTo": [
+      "Especialistas extremos que dominan un área específica"
+    ]
   },
   {
     "id": "toon_link",
@@ -1878,7 +2463,20 @@ window.CHARACTERS = [
     "cons": [
       "Ligero y con espada de menor alcance que el Link adulto"
     ],
-    "beginnerTip": "Tira una bomba al aire: si golpea al rival, salta de inmediato con Fair para liquidarlo."
+    "beginnerTip": "Tira una bomba al aire: si golpea al rival, salta de inmediato con Fair para liquidarlo.",
+    "killMoves": [
+      "Disparo/Proyectil cargado",
+      "Forward Smash",
+      "Back Air al borde"
+    ],
+    "oosMove": "Up-B o Neutral Air rápido",
+    "recoveryTip": "Usa bombas o proyectiles en el aire para frenar al rival mientras vuelves.",
+    "strongAgainst": [
+      "Tanques pesados y personajes lentos sin proyectiles"
+    ],
+    "vulnerableTo": [
+      "Rushdown hiper veloces que saltan por encima de los proyectiles"
+    ]
   },
   {
     "id": "wolf",
@@ -1919,7 +2517,20 @@ window.CHARACTERS = [
       "Recuperación con Side-B arriesgada que cae en muerte si falla",
       "Caída rápida ante combos"
     ],
-    "beginnerTip": "Dispara el Blaster a media distancia y salta con Forward-Air cuando el oponente reaccione."
+    "beginnerTip": "Dispara el Blaster a media distancia y salta con Forward-Air cuando el oponente reaccione.",
+    "killMoves": [
+      "Back Air",
+      "Up Smash fuera de escudo",
+      "Forward Smash"
+    ],
+    "oosMove": "Up-B o Neutral Air",
+    "recoveryTip": "Recuperación balanceada: salta en el momento justo y dirígete al borde.",
+    "strongAgainst": [
+      "Estilo flexible adaptable contra cualquier rival"
+    ],
+    "vulnerableTo": [
+      "Especialistas extremos que dominan un área específica"
+    ]
   },
   {
     "id": "villager",
@@ -1960,7 +2571,20 @@ window.CHARACTERS = [
       "Poco alcance en tierra si no usa objetos",
       "Lento al correr"
     ],
-    "beginnerTip": "Monta el cohete Giroide (Side-B) para acercarte mientras disparas con el tirachinas."
+    "beginnerTip": "Monta el cohete Giroide (Side-B) para acercarte mientras disparas con el tirachinas.",
+    "killMoves": [
+      "Disparo/Proyectil cargado",
+      "Forward Smash",
+      "Back Air al borde"
+    ],
+    "oosMove": "Up-B o Neutral Air rápido",
+    "recoveryTip": "Usa bombas o proyectiles en el aire para frenar al rival mientras vuelves.",
+    "strongAgainst": [
+      "Tanques pesados y personajes lentos sin proyectiles"
+    ],
+    "vulnerableTo": [
+      "Rushdown hiper veloces que saltan por encima de los proyectiles"
+    ]
   },
   {
     "id": "mega_man",
@@ -2001,7 +2625,20 @@ window.CHARACTERS = [
       "Ataques estándar son proyectiles que pueden ser reflejados",
       "Juego cuerpo a cuerpo atípico"
     ],
-    "beginnerTip": "Lanza Metal Blade hacia el suelo para recogerla como objeto y tenerla lista en la mano."
+    "beginnerTip": "Lanza Metal Blade hacia el suelo para recogerla como objeto y tenerla lista en la mano.",
+    "killMoves": [
+      "Disparo/Proyectil cargado",
+      "Forward Smash",
+      "Back Air al borde"
+    ],
+    "oosMove": "Up-B o Neutral Air rápido",
+    "recoveryTip": "Usa bombas o proyectiles en el aire para frenar al rival mientras vuelves.",
+    "strongAgainst": [
+      "Tanques pesados y personajes lentos sin proyectiles"
+    ],
+    "vulnerableTo": [
+      "Rushdown hiper veloces que saltan por encima de los proyectiles"
+    ]
   },
   {
     "id": "wii_fit_trainer",
@@ -2042,7 +2679,20 @@ window.CHARACTERS = [
       "Golpes con ángulos poco intuitivos al inicio",
       "Rango algo inconsistente"
     ],
-    "beginnerTip": "Usa Down-B (Respiración profunda) cada vez que mandes al rival lejos para pelear siempre potenciado."
+    "beginnerTip": "Usa Down-B (Respiración profunda) cada vez que mandes al rival lejos para pelear siempre potenciado.",
+    "killMoves": [
+      "Trampa explosiva / Objeto especial",
+      "Ataque Smash potenciado",
+      "Down Smash en borde"
+    ],
+    "oosMove": "Up-B o Neutral Air",
+    "recoveryTip": "Usa objetos, bloques o teletransportes para alterar tu trayectoria de caída.",
+    "strongAgainst": [
+      "Luchadores convencionales que caen fácil en trampas"
+    ],
+    "vulnerableTo": [
+      "Personajes agresivos que no dan respiro para preparar recursos"
+    ]
   },
   {
     "id": "rosalina_and_luma",
@@ -2083,7 +2733,20 @@ window.CHARACTERS = [
       "Muy ligera y flotante",
       "Si Luma muere, queda vulnerable durante varios segundos"
     ],
-    "beginnerTip": "Envía a Luma hacia adelante con Neutral-B para acorralar al rival entre dos fuegos."
+    "beginnerTip": "Envía a Luma hacia adelante con Neutral-B para acorralar al rival entre dos fuegos.",
+    "killMoves": [
+      "Trampa explosiva / Objeto especial",
+      "Ataque Smash potenciado",
+      "Down Smash en borde"
+    ],
+    "oosMove": "Up-B o Neutral Air",
+    "recoveryTip": "Usa objetos, bloques o teletransportes para alterar tu trayectoria de caída.",
+    "strongAgainst": [
+      "Luchadores convencionales que caen fácil en trampas"
+    ],
+    "vulnerableTo": [
+      "Personajes agresivos que no dan respiro para preparar recursos"
+    ]
   },
   {
     "id": "little_mac",
@@ -2123,7 +2786,20 @@ window.CHARACTERS = [
     "cons": [
       "La peor recuperación aérea de la historia de los videojuegos: si lo sacan lejos del suelo, peligra gravemente"
     ],
-    "beginnerTip": "Quédate siempre en el centro del escenario y suelta ataques Smash cuando el rival intente golpearte."
+    "beginnerTip": "Quédate siempre en el centro del escenario y suelta ataques Smash cuando el rival intente golpearte.",
+    "killMoves": [
+      "Dash Attack -> Up-Air",
+      "Forward Smash",
+      "Back Air fuera de plataforma"
+    ],
+    "oosMove": "Neutral Air o Up-Smash directo",
+    "recoveryTip": "Varía entre recuperarte alto o directo al borde para no ser predecible.",
+    "strongAgainst": [
+      "Zoners que necesitan tiempo y espacio para colocar proyectiles"
+    ],
+    "vulnerableTo": [
+      "Espadachines con muros de golpes desarticulados"
+    ]
   },
   {
     "id": "greninja",
@@ -2164,7 +2840,20 @@ window.CHARACTERS = [
       "Agarre algo lento",
       "Requiere buen ritmo para confirmar noqueos"
     ],
-    "beginnerTip": "Usa Dash Attack -> Forward-Air o Up-Air para combos sencillos y efectivos."
+    "beginnerTip": "Usa Dash Attack -> Forward-Air o Up-Air para combos sencillos y efectivos.",
+    "killMoves": [
+      "Dash Attack -> Up-Air",
+      "Forward Smash",
+      "Back Air fuera de plataforma"
+    ],
+    "oosMove": "Neutral Air o Up-Smash directo",
+    "recoveryTip": "Varía entre recuperarte alto o directo al borde para no ser predecible.",
+    "strongAgainst": [
+      "Zoners que necesitan tiempo y espacio para colocar proyectiles"
+    ],
+    "vulnerableTo": [
+      "Espadachines con muros de golpes desarticulados"
+    ]
   },
   {
     "id": "mii_brawler",
@@ -2204,7 +2893,20 @@ window.CHARACTERS = [
     "cons": [
       "Rango cuerpo a cuerpo corto"
     ],
-    "beginnerTip": "Equipa Thrupper (Up-B) y conecta Down-Tilt para matar por la parte superior."
+    "beginnerTip": "Equipa Thrupper (Up-B) y conecta Down-Tilt para matar por la parte superior.",
+    "killMoves": [
+      "Dash Attack -> Up-Air",
+      "Forward Smash",
+      "Back Air fuera de plataforma"
+    ],
+    "oosMove": "Neutral Air o Up-Smash directo",
+    "recoveryTip": "Varía entre recuperarte alto o directo al borde para no ser predecible.",
+    "strongAgainst": [
+      "Zoners que necesitan tiempo y espacio para colocar proyectiles"
+    ],
+    "vulnerableTo": [
+      "Espadachines con muros de golpes desarticulados"
+    ]
   },
   {
     "id": "mii_swordfighter",
@@ -2244,7 +2946,20 @@ window.CHARACTERS = [
     "cons": [
       "Movilidad moderada"
     ],
-    "beginnerTip": "Lanza el tornado (Neutral-B 1): si impacta, salta con Up-Air para un noqueo fácil."
+    "beginnerTip": "Lanza el tornado (Neutral-B 1): si impacta, salta con Up-Air para un noqueo fácil.",
+    "killMoves": [
+      "Forward Smash (Corte Potente)",
+      "Back Air (Golpe de Espalda)",
+      "Up-Air en Techo"
+    ],
+    "oosMove": "Up-B o Shield Grab (Agarre tras bloqueo)",
+    "recoveryTip": "Aprovecha el alcance de tu espada para cortar a rivales que intenten interceptarte.",
+    "strongAgainst": [
+      "Luchadores de poco rango y brawlers cuerpo a cuerpo"
+    ],
+    "vulnerableTo": [
+      "Zoners de proyectiles pesados a larga distancia"
+    ]
   },
   {
     "id": "mii_gunner",
@@ -2284,7 +2999,20 @@ window.CHARACTERS = [
     "cons": [
       "Lento en el cuerpo a cuerpo cerrado"
     ],
-    "beginnerTip": "Dispara misiles seguidos de granadas para hacer imposible que el rival se acerque en línea recta."
+    "beginnerTip": "Dispara misiles seguidos de granadas para hacer imposible que el rival se acerque en línea recta.",
+    "killMoves": [
+      "Disparo/Proyectil cargado",
+      "Forward Smash",
+      "Back Air al borde"
+    ],
+    "oosMove": "Up-B o Neutral Air rápido",
+    "recoveryTip": "Usa bombas o proyectiles en el aire para frenar al rival mientras vuelves.",
+    "strongAgainst": [
+      "Tanques pesados y personajes lentos sin proyectiles"
+    ],
+    "vulnerableTo": [
+      "Rushdown hiper veloces que saltan por encima de los proyectiles"
+    ]
   },
   {
     "id": "palutena",
@@ -2324,7 +3052,20 @@ window.CHARACTERS = [
     "cons": [
       "Proyectiles algo predecibles si se abusa de ellos"
     ],
-    "beginnerTip": "Atrapa al rival con un agarre hacia abajo y salta inmediatamente con Neutral-Air (Nair)."
+    "beginnerTip": "Atrapa al rival con un agarre hacia abajo y salta inmediatamente con Neutral-Air (Nair).",
+    "killMoves": [
+      "Back Air",
+      "Up Smash fuera de escudo",
+      "Forward Smash"
+    ],
+    "oosMove": "Up-B o Neutral Air",
+    "recoveryTip": "Recuperación balanceada: salta en el momento justo y dirígete al borde.",
+    "strongAgainst": [
+      "Estilo flexible adaptable contra cualquier rival"
+    ],
+    "vulnerableTo": [
+      "Especialistas extremos que dominan un área específica"
+    ]
   },
   {
     "id": "pac_man",
@@ -2364,7 +3105,20 @@ window.CHARACTERS = [
     "cons": [
       "Curva de aprendizaje empinada para gestionar los ciclos de frutas"
     ],
-    "beginnerTip": "Carga la fruta hasta la Llave (última) o la Campana para asegurar muertes sencillas."
+    "beginnerTip": "Carga la fruta hasta la Llave (última) o la Campana para asegurar muertes sencillas.",
+    "killMoves": [
+      "Trampa explosiva / Objeto especial",
+      "Ataque Smash potenciado",
+      "Down Smash en borde"
+    ],
+    "oosMove": "Up-B o Neutral Air",
+    "recoveryTip": "Usa objetos, bloques o teletransportes para alterar tu trayectoria de caída.",
+    "strongAgainst": [
+      "Luchadores convencionales que caen fácil en trampas"
+    ],
+    "vulnerableTo": [
+      "Personajes agresivos que no dan respiro para preparar recursos"
+    ]
   },
   {
     "id": "robin",
@@ -2405,7 +3159,20 @@ window.CHARACTERS = [
       "La velocidad al correr más lenta entre los personajes humanos",
       "Sus armas tienen límite de usos y deben recargarse"
     ],
-    "beginnerTip": "Usa Arcfire en el borde para atrapar al rival y remata con un Forward Smash de espada Trueno."
+    "beginnerTip": "Usa Arcfire en el borde para atrapar al rival y remata con un Forward Smash de espada Trueno.",
+    "killMoves": [
+      "Disparo/Proyectil cargado",
+      "Forward Smash",
+      "Back Air al borde"
+    ],
+    "oosMove": "Up-B o Neutral Air rápido",
+    "recoveryTip": "Usa bombas o proyectiles en el aire para frenar al rival mientras vuelves.",
+    "strongAgainst": [
+      "Tanques pesados y personajes lentos sin proyectiles"
+    ],
+    "vulnerableTo": [
+      "Rushdown hiper veloces que saltan por encima de los proyectiles"
+    ]
   },
   {
     "id": "shulk",
@@ -2446,7 +3213,20 @@ window.CHARACTERS = [
       "Exige cambiar de artes continuamente según el momento",
       "Ataques con cierta lentitud de fotogramas"
     ],
-    "beginnerTip": "Usa el arte 'Speed' para correr y meter presión; cambia a 'Smash' cuando el rival tenga más de 80%."
+    "beginnerTip": "Usa el arte 'Speed' para correr y meter presión; cambia a 'Smash' cuando el rival tenga más de 80%.",
+    "killMoves": [
+      "Forward Smash (Corte Potente)",
+      "Back Air (Golpe de Espalda)",
+      "Up-Air en Techo"
+    ],
+    "oosMove": "Up-B o Shield Grab (Agarre tras bloqueo)",
+    "recoveryTip": "Aprovecha el alcance de tu espada para cortar a rivales que intenten interceptarte.",
+    "strongAgainst": [
+      "Luchadores de poco rango y brawlers cuerpo a cuerpo"
+    ],
+    "vulnerableTo": [
+      "Zoners de proyectiles pesados a larga distancia"
+    ]
   },
   {
     "id": "bowser_jr",
@@ -2487,7 +3267,20 @@ window.CHARACTERS = [
       "Si recibe golpes fuera del cochecito, sufre un 15% más de daño",
       "Vulnerable si le golpean al salir del coche"
     ],
-    "beginnerTip": "Lanza el Mechakoopa y corre detrás en tu cochecito con Side-B para atraparlo."
+    "beginnerTip": "Lanza el Mechakoopa y corre detrás en tu cochecito con Side-B para atraparlo.",
+    "killMoves": [
+      "Disparo/Proyectil cargado",
+      "Forward Smash",
+      "Back Air al borde"
+    ],
+    "oosMove": "Up-B o Neutral Air rápido",
+    "recoveryTip": "Usa bombas o proyectiles en el aire para frenar al rival mientras vuelves.",
+    "strongAgainst": [
+      "Tanques pesados y personajes lentos sin proyectiles"
+    ],
+    "vulnerableTo": [
+      "Rushdown hiper veloces que saltan por encima de los proyectiles"
+    ]
   },
   {
     "id": "duck_hunt",
@@ -2528,7 +3321,20 @@ window.CHARACTERS = [
       "Poco poder de remate directo cuerpo a cuerpo",
       "Requiere coordinar disparos invisibles"
     ],
-    "beginnerTip": "Patea la lata al empezar y sigue pulsando B para que bote hacia el rival mientras tú te mueves libremente."
+    "beginnerTip": "Patea la lata al empezar y sigue pulsando B para que bote hacia el rival mientras tú te mueves libremente.",
+    "killMoves": [
+      "Disparo/Proyectil cargado",
+      "Forward Smash",
+      "Back Air al borde"
+    ],
+    "oosMove": "Up-B o Neutral Air rápido",
+    "recoveryTip": "Usa bombas o proyectiles en el aire para frenar al rival mientras vuelves.",
+    "strongAgainst": [
+      "Tanques pesados y personajes lentos sin proyectiles"
+    ],
+    "vulnerableTo": [
+      "Rushdown hiper veloces que saltan por encima de los proyectiles"
+    ]
   },
   {
     "id": "ryu",
@@ -2569,7 +3375,20 @@ window.CHARACTERS = [
       "Movilidad aérea pesada",
       "Exige memorizar entradas de Street Fighter (↓ ↘ → + A)"
     ],
-    "beginnerTip": "Conecta golpes suaves de pie (Light Downtilt) y cancela de inmediato en Shoryuken con comando."
+    "beginnerTip": "Conecta golpes suaves de pie (Light Downtilt) y cancela de inmediato en Shoryuken con comando.",
+    "killMoves": [
+      "Shoryuken con comando",
+      "Súper Especial (GO! / Rage Drive)",
+      "Forward Smash"
+    ],
+    "oosMove": "Up-B (Shoryuken invulnerable al inicio)",
+    "recoveryTip": "Usa ataques especiales con avance hacia adelante para impulsarte.",
+    "strongAgainst": [
+      "Cualquiera que se descuide en combate cerrado 1v1"
+    ],
+    "vulnerableTo": [
+      "Campers a larga distancia y personajes con desarticulación"
+    ]
   },
   {
     "id": "ken",
@@ -2610,7 +3429,20 @@ window.CHARACTERS = [
       "Exige alta destreza con la palanca de control",
       "Hadoken más lento"
     ],
-    "beginnerTip": "Usa Heavy Jab o Proximity Jab cancelado directamente en Shoryuken para asegurar la victoria."
+    "beginnerTip": "Usa Heavy Jab o Proximity Jab cancelado directamente en Shoryuken para asegurar la victoria.",
+    "killMoves": [
+      "Shoryuken con comando",
+      "Súper Especial (GO! / Rage Drive)",
+      "Forward Smash"
+    ],
+    "oosMove": "Up-B (Shoryuken invulnerable al inicio)",
+    "recoveryTip": "Usa ataques especiales con avance hacia adelante para impulsarte.",
+    "strongAgainst": [
+      "Cualquiera que se descuide en combate cerrado 1v1"
+    ],
+    "vulnerableTo": [
+      "Campers a larga distancia y personajes con desarticulación"
+    ]
   },
   {
     "id": "cloud",
@@ -2651,7 +3483,20 @@ window.CHARACTERS = [
       "Sin Límite, su recuperación con Climhazzard no llega lejos",
       "El Límite expira tras 15 segundos"
     ],
-    "beginnerTip": "Carga el Límite (Down-B) cada vez que el rival vuele lejos; ¡intimidarás en todo momento!"
+    "beginnerTip": "Carga el Límite (Down-B) cada vez que el rival vuele lejos; ¡intimidarás en todo momento!",
+    "killMoves": [
+      "Finishing Touch (Down-B con Límite)",
+      "Forward Smash",
+      "Back Air colosal"
+    ],
+    "oosMove": "Up-B (Climhazzard)",
+    "recoveryTip": "Aprovecha el alcance de tu espada para cortar a rivales que intenten interceptarte.",
+    "strongAgainst": [
+      "Luchadores de poco rango y brawlers cuerpo a cuerpo"
+    ],
+    "vulnerableTo": [
+      "Zoners de proyectiles pesados a larga distancia"
+    ]
   },
   {
     "id": "corrin",
@@ -2692,7 +3537,20 @@ window.CHARACTERS = [
       "Movilidad en tierra algo pausada",
       "Recuperación predecible"
     ],
-    "beginnerTip": "Clava tu lanza en el piso con Side-B a distancia segura y patea al rival si intenta acercarse."
+    "beginnerTip": "Clava tu lanza en el piso con Side-B a distancia segura y patea al rival si intenta acercarse.",
+    "killMoves": [
+      "Forward Smash (Corte Potente)",
+      "Back Air (Golpe de Espalda)",
+      "Up-Air en Techo"
+    ],
+    "oosMove": "Up-B o Shield Grab (Agarre tras bloqueo)",
+    "recoveryTip": "Aprovecha el alcance de tu espada para cortar a rivales que intenten interceptarte.",
+    "strongAgainst": [
+      "Luchadores de poco rango y brawlers cuerpo a cuerpo"
+    ],
+    "vulnerableTo": [
+      "Zoners de proyectiles pesados a larga distancia"
+    ]
   },
   {
     "id": "bayonetta",
@@ -2733,7 +3591,20 @@ window.CHARACTERS = [
       "Requiere memorizar secuencias de combos aéreos para hacer daño",
       "Ligera y fácil de derribar si falla"
     ],
-    "beginnerTip": "Activa Witch Time cuando el rival intente un ataque obvio para congelarlo y golpearlo a gusto."
+    "beginnerTip": "Activa Witch Time cuando el rival intente un ataque obvio para congelarlo y golpearlo a gusto.",
+    "killMoves": [
+      "Trampa explosiva / Objeto especial",
+      "Ataque Smash potenciado",
+      "Down Smash en borde"
+    ],
+    "oosMove": "Up-B o Neutral Air",
+    "recoveryTip": "Usa objetos, bloques o teletransportes para alterar tu trayectoria de caída.",
+    "strongAgainst": [
+      "Luchadores convencionales que caen fácil en trampas"
+    ],
+    "vulnerableTo": [
+      "Personajes agresivos que no dan respiro para preparar recursos"
+    ]
   },
   {
     "id": "inkling",
@@ -2774,7 +3645,20 @@ window.CHARACTERS = [
       "Si te quedas sin tinta, tus ataques especiales se desactivan",
       "Requiere recargar tinta periódicamente"
     ],
-    "beginnerTip": "Entierra al oponente con el rodillo y remata con un Up-Smash directo."
+    "beginnerTip": "Entierra al oponente con el rodillo y remata con un Up-Smash directo.",
+    "killMoves": [
+      "Dash Attack -> Up-Air",
+      "Forward Smash",
+      "Back Air fuera de plataforma"
+    ],
+    "oosMove": "Neutral Air o Up-Smash directo",
+    "recoveryTip": "Varía entre recuperarte alto o directo al borde para no ser predecible.",
+    "strongAgainst": [
+      "Zoners que necesitan tiempo y espacio para colocar proyectiles"
+    ],
+    "vulnerableTo": [
+      "Espadachines con muros de golpes desarticulados"
+    ]
   },
   {
     "id": "ridley",
@@ -2815,7 +3699,20 @@ window.CHARACTERS = [
       "Cuerpo gigante muy fácil de golpear",
       "Su Up-B solo viaja en 4 direcciones fijas"
     ],
-    "beginnerTip": "Agarra al oponente con Side-B para llevarlo hacia el borde y tirarlo contra la pared exterior."
+    "beginnerTip": "Agarra al oponente con Side-B para llevarlo hacia el borde y tirarlo contra la pared exterior.",
+    "killMoves": [
+      "Forward Smash cargado",
+      "Side-B (Comando de Agarre)",
+      "Down Air (Meteorito)"
+    ],
+    "oosMove": "Up-B con súper armadura o Neutral Air",
+    "recoveryTip": "Guarda tu salto doble y usa movimientos con súper armadura cerca del borde.",
+    "strongAgainst": [
+      "Luchadores ligeros que mueren a porcentajes tempranos"
+    ],
+    "vulnerableTo": [
+      "Personajes ultra rápidos con combos largos y zoners"
+    ]
   },
   {
     "id": "simon",
@@ -2856,7 +3753,20 @@ window.CHARACTERS = [
       "Recuperación vertical con Up-B muy corta",
       "Muy vulnerable si el enemigo logra acercase a su espalda"
     ],
-    "beginnerTip": "Lanza agua bendita hacia el suelo: si arde sobre el rival, conecta inmediatamente tu Forward Smash de látigo."
+    "beginnerTip": "Lanza agua bendita hacia el suelo: si arde sobre el rival, conecta inmediatamente tu Forward Smash de látigo.",
+    "killMoves": [
+      "Disparo/Proyectil cargado",
+      "Forward Smash",
+      "Back Air al borde"
+    ],
+    "oosMove": "Up-B o Neutral Air rápido",
+    "recoveryTip": "Usa bombas o proyectiles en el aire para frenar al rival mientras vuelves.",
+    "strongAgainst": [
+      "Tanques pesados y personajes lentos sin proyectiles"
+    ],
+    "vulnerableTo": [
+      "Rushdown hiper veloces que saltan por encima de los proyectiles"
+    ]
   },
   {
     "id": "richter",
@@ -2897,7 +3807,20 @@ window.CHARACTERS = [
       "Misma recuperación rígida que Simon",
       "Velocidad de movimiento en tierra pausada"
     ],
-    "beginnerTip": "Mantén al rival a raya lanzando la cruz y remata con la punta del Vampire Killer."
+    "beginnerTip": "Mantén al rival a raya lanzando la cruz y remata con la punta del Vampire Killer.",
+    "killMoves": [
+      "Disparo/Proyectil cargado",
+      "Forward Smash",
+      "Back Air al borde"
+    ],
+    "oosMove": "Up-B o Neutral Air rápido",
+    "recoveryTip": "Usa bombas o proyectiles en el aire para frenar al rival mientras vuelves.",
+    "strongAgainst": [
+      "Tanques pesados y personajes lentos sin proyectiles"
+    ],
+    "vulnerableTo": [
+      "Rushdown hiper veloces que saltan por encima de los proyectiles"
+    ]
   },
   {
     "id": "king_k_rool",
@@ -2938,7 +3861,20 @@ window.CHARACTERS = [
       "Si su panza recibe demasiado daño seguido, su armadura se rompe y queda aturdido",
       "Objetivo grande"
     ],
-    "beginnerTip": "Tira la corona (Side-B) seguida de la bala de cañón (Neutral-B) para crear un muro de proyectiles pesados."
+    "beginnerTip": "Tira la corona (Side-B) seguida de la bala de cañón (Neutral-B) para crear un muro de proyectiles pesados.",
+    "killMoves": [
+      "Forward Smash cargado",
+      "Side-B (Comando de Agarre)",
+      "Down Air (Meteorito)"
+    ],
+    "oosMove": "Up-B con súper armadura o Neutral Air",
+    "recoveryTip": "Guarda tu salto doble y usa movimientos con súper armadura cerca del borde.",
+    "strongAgainst": [
+      "Luchadores ligeros que mueren a porcentajes tempranos"
+    ],
+    "vulnerableTo": [
+      "Personajes ultra rápidos con combos largos y zoners"
+    ]
   },
   {
     "id": "isabelle",
@@ -2979,7 +3915,20 @@ window.CHARACTERS = [
       "Poco peso",
       "Le cuesta matar sin una trampa o caña bien situada"
     ],
-    "beginnerTip": "Entierra el cohete con Down-B y quédate cerca: si el oponente salta para evitarlo, lánzale la caña de pescar en el aire."
+    "beginnerTip": "Entierra el cohete con Down-B y quédate cerca: si el oponente salta para evitarlo, lánzale la caña de pescar en el aire.",
+    "killMoves": [
+      "Disparo/Proyectil cargado",
+      "Forward Smash",
+      "Back Air al borde"
+    ],
+    "oosMove": "Up-B o Neutral Air rápido",
+    "recoveryTip": "Usa bombas o proyectiles en el aire para frenar al rival mientras vuelves.",
+    "strongAgainst": [
+      "Tanques pesados y personajes lentos sin proyectiles"
+    ],
+    "vulnerableTo": [
+      "Rushdown hiper veloces que saltan por encima de los proyectiles"
+    ]
   },
   {
     "id": "incineroar",
@@ -3020,7 +3969,20 @@ window.CHARACTERS = [
       "La velocidad de carrera más baja del juego",
       "Recuperación vulnerable si lo empujan lejos"
     ],
-    "beginnerTip": "Usa Revenge cuando veas que un ataque enemigo viene hacia ti, y luego conecta Side-B para noquearlo de un golpe."
+    "beginnerTip": "Usa Revenge cuando veas que un ataque enemigo viene hacia ti, y luego conecta Side-B para noquearlo de un golpe.",
+    "killMoves": [
+      "Forward Smash cargado",
+      "Side-B (Comando de Agarre)",
+      "Down Air (Meteorito)"
+    ],
+    "oosMove": "Up-B con súper armadura o Neutral Air",
+    "recoveryTip": "Guarda tu salto doble y usa movimientos con súper armadura cerca del borde.",
+    "strongAgainst": [
+      "Luchadores ligeros que mueren a porcentajes tempranos"
+    ],
+    "vulnerableTo": [
+      "Personajes ultra rápidos con combos largos y zoners"
+    ]
   },
   {
     "id": "piranha_plant",
@@ -3061,7 +4023,20 @@ window.CHARACTERS = [
       "Blanco algo grande",
       "Juego neutral más defensivo"
     ],
-    "beginnerTip": "Saca la bola con Neutral-B y mantenla flotando: ningún rival podrá saltar sobre ti sin recibir daño."
+    "beginnerTip": "Saca la bola con Neutral-B y mantenla flotando: ningún rival podrá saltar sobre ti sin recibir daño.",
+    "killMoves": [
+      "Trampa explosiva / Objeto especial",
+      "Ataque Smash potenciado",
+      "Down Smash en borde"
+    ],
+    "oosMove": "Up-B o Neutral Air",
+    "recoveryTip": "Usa objetos, bloques o teletransportes para alterar tu trayectoria de caída.",
+    "strongAgainst": [
+      "Luchadores convencionales que caen fácil en trampas"
+    ],
+    "vulnerableTo": [
+      "Personajes agresivos que no dan respiro para preparar recursos"
+    ]
   },
   {
     "id": "joker",
@@ -3102,7 +4077,20 @@ window.CHARACTERS = [
       "Sin Arsène requiere combos largos para acumular daño y matar",
       "Técnico"
     ],
-    "beginnerTip": "Usa Rebel's Guard (Down-B) para absorber ataques y llamar a Arsène el doble de rápido."
+    "beginnerTip": "Usa Rebel's Guard (Down-B) para absorber ataques y llamar a Arsène el doble de rápido.",
+    "killMoves": [
+      "Back Air con Arsène",
+      "Up Smash",
+      "Tetrakarn (Contraataque x1.6)"
+    ],
+    "oosMove": "Up-B (Garfio sin Arsène) o Back Air",
+    "recoveryTip": "Usa objetos, bloques o teletransportes para alterar tu trayectoria de caída.",
+    "strongAgainst": [
+      "Luchadores convencionales que caen fácil en trampas"
+    ],
+    "vulnerableTo": [
+      "Personajes agresivos que no dan respiro para preparar recursos"
+    ]
   },
   {
     "id": "hero",
@@ -3143,7 +4131,20 @@ window.CHARACTERS = [
       "Si te quedas sin MP, tus ataques especiales no funcionan",
       "Exige leer el menú de hechizos rápidamente"
     ],
-    "beginnerTip": "Abre el menú con Down-B cuando estés lejos y busca hechizos como 'Oomph' o 'Bounce' para dominar."
+    "beginnerTip": "Abre el menú con Down-B cuando estés lejos y busca hechizos como 'Oomph' o 'Bounce' para dominar.",
+    "killMoves": [
+      "Trampa explosiva / Objeto especial",
+      "Ataque Smash potenciado",
+      "Down Smash en borde"
+    ],
+    "oosMove": "Up-B o Neutral Air",
+    "recoveryTip": "Usa objetos, bloques o teletransportes para alterar tu trayectoria de caída.",
+    "strongAgainst": [
+      "Luchadores convencionales que caen fácil en trampas"
+    ],
+    "vulnerableTo": [
+      "Personajes agresivos que no dan respiro para preparar recursos"
+    ]
   },
   {
     "id": "banjo_and_kazooie",
@@ -3183,7 +4184,20 @@ window.CHARACTERS = [
     "cons": [
       "Wonderwing solo tiene 5 usos por cada vida"
     ],
-    "beginnerTip": "Guarda tus Wonderwing para rematar cuando el rival esté en porcentaje alto y trate de atacarte."
+    "beginnerTip": "Guarda tus Wonderwing para rematar cuando el rival esté en porcentaje alto y trate de atacarte.",
+    "killMoves": [
+      "Back Air",
+      "Up Smash fuera de escudo",
+      "Forward Smash"
+    ],
+    "oosMove": "Up-B o Neutral Air",
+    "recoveryTip": "Recuperación balanceada: salta en el momento justo y dirígete al borde.",
+    "strongAgainst": [
+      "Estilo flexible adaptable contra cualquier rival"
+    ],
+    "vulnerableTo": [
+      "Especialistas extremos que dominan un área específica"
+    ]
   },
   {
     "id": "terry",
@@ -3224,7 +4238,20 @@ window.CHARACTERS = [
       "Recuperación horizontal predecible",
       "Requiere memorizar comandos para los súpers"
     ],
-    "beginnerTip": "Aprende el clásico 'Jab, Jab -> Power Dunk (Down-B)': conecta siempre y causa daño brutal."
+    "beginnerTip": "Aprende el clásico 'Jab, Jab -> Power Dunk (Down-B)': conecta siempre y causa daño brutal.",
+    "killMoves": [
+      "Shoryuken con comando",
+      "Súper Especial (GO! / Rage Drive)",
+      "Forward Smash"
+    ],
+    "oosMove": "Up-B (Shoryuken invulnerable al inicio)",
+    "recoveryTip": "Usa ataques especiales con avance hacia adelante para impulsarte.",
+    "strongAgainst": [
+      "Cualquiera que se descuide en combate cerrado 1v1"
+    ],
+    "vulnerableTo": [
+      "Campers a larga distancia y personajes con desarticulación"
+    ]
   },
   {
     "id": "byleth",
@@ -3265,7 +4292,20 @@ window.CHARACTERS = [
       "Velocidad de carrera bastante baja",
       "Ataques con tiempo de inicio algo lento si no se espacian bien"
     ],
-    "beginnerTip": "Usa Forward-Tilt y Fair para mantener al enemigo al límite del alcance de tu lanza."
+    "beginnerTip": "Usa Forward-Tilt y Fair para mantener al enemigo al límite del alcance de tu lanza.",
+    "killMoves": [
+      "Forward Smash (Corte Potente)",
+      "Back Air (Golpe de Espalda)",
+      "Up-Air en Techo"
+    ],
+    "oosMove": "Up-B o Shield Grab (Agarre tras bloqueo)",
+    "recoveryTip": "Aprovecha el alcance de tu espada para cortar a rivales que intenten interceptarte.",
+    "strongAgainst": [
+      "Luchadores de poco rango y brawlers cuerpo a cuerpo"
+    ],
+    "vulnerableTo": [
+      "Zoners de proyectiles pesados a larga distancia"
+    ]
   },
   {
     "id": "minmin",
@@ -3306,7 +4346,20 @@ window.CHARACTERS = [
       "Recuperación con garfio muy vulnerable si le impiden el enganche",
       "Sufre mucho si el rival logra meterse cuerpo a cuerpo"
     ],
-    "beginnerTip": "Equipa el brazo Dragón o Megawatt y ataca manteniendo la distancia de pantalla completa."
+    "beginnerTip": "Equipa el brazo Dragón o Megawatt y ataca manteniendo la distancia de pantalla completa.",
+    "killMoves": [
+      "Disparo/Proyectil cargado",
+      "Forward Smash",
+      "Back Air al borde"
+    ],
+    "oosMove": "Up-B o Neutral Air rápido",
+    "recoveryTip": "Usa bombas o proyectiles en el aire para frenar al rival mientras vuelves.",
+    "strongAgainst": [
+      "Tanques pesados y personajes lentos sin proyectiles"
+    ],
+    "vulnerableTo": [
+      "Rushdown hiper veloces que saltan por encima de los proyectiles"
+    ]
   },
   {
     "id": "steve",
@@ -3347,7 +4400,20 @@ window.CHARACTERS = [
       "Sin materiales sus ataques se rompen y queda inofensivo",
       "Salto básico muy corto"
     ],
-    "beginnerTip": "Construye un muro de dos bloques al inicio de cada partida y ponte a minar para obtener diamante rápido."
+    "beginnerTip": "Construye un muro de dos bloques al inicio de cada partida y ponte a minar para obtener diamante rápido.",
+    "killMoves": [
+      "Espada de Diamante F-Smash",
+      "Minecart (Vagoneta)",
+      "Up Smash de Magma"
+    ],
+    "oosMove": "Jab o Neutral Air",
+    "recoveryTip": "Usa objetos, bloques o teletransportes para alterar tu trayectoria de caída.",
+    "strongAgainst": [
+      "Luchadores convencionales que caen fácil en trampas"
+    ],
+    "vulnerableTo": [
+      "Personajes agresivos que no dan respiro para preparar recursos"
+    ]
   },
   {
     "id": "sephiroth",
@@ -3388,7 +4454,20 @@ window.CHARACTERS = [
       "Extremadamente ligero y frágil: muere si recibe golpes directos contundentes",
       "Hitbox amplia"
     ],
-    "beginnerTip": "Mantén a raya con Forward-Tilt; nadie puede cruzar la longitud de tu espada sin pagar daño."
+    "beginnerTip": "Mantén a raya con Forward-Tilt; nadie puede cruzar la longitud de tu espada sin pagar daño.",
+    "killMoves": [
+      "Gigaflare",
+      "Octaslash",
+      "Down Air (Hell's Gate atraviesa plataformas)"
+    ],
+    "oosMove": "Neutral Air o Scintilla (Contraataque)",
+    "recoveryTip": "Aprovecha el alcance de tu espada para cortar a rivales que intenten interceptarte.",
+    "strongAgainst": [
+      "Luchadores de poco rango y brawlers cuerpo a cuerpo"
+    ],
+    "vulnerableTo": [
+      "Zoners de proyectiles pesados a larga distancia"
+    ]
   },
   {
     "id": "pyra",
@@ -3428,7 +4507,20 @@ window.CHARACTERS = [
     "cons": [
       "Recuperaciones algo lineales que pueden ser interceptadas si caen profundo"
     ],
-    "beginnerTip": "Empieza la partida con Mythra para acumular daño sin parar y cambia a Pyra en cuanto el rival tenga más del 80%."
+    "beginnerTip": "Empieza la partida con Mythra para acumular daño sin parar y cambia a Pyra en cuanto el rival tenga más del 80%.",
+    "killMoves": [
+      "Back Air",
+      "Up Smash fuera de escudo",
+      "Forward Smash"
+    ],
+    "oosMove": "Up-B o Neutral Air",
+    "recoveryTip": "Recuperación balanceada: salta en el momento justo y dirígete al borde.",
+    "strongAgainst": [
+      "Estilo flexible adaptable contra cualquier rival"
+    ],
+    "vulnerableTo": [
+      "Especialistas extremos que dominan un área específica"
+    ]
   },
   {
     "id": "kazuya",
@@ -3469,7 +4561,20 @@ window.CHARACTERS = [
       "Salto muy rígido y velocidad al caminar lenta",
       "Curva de aprendizaje empinada para ejecutar inputs de Tekken"
     ],
-    "beginnerTip": "Aprende primero su combo de 10 golpes manteniendo pulsado el botón A para castigar sin fallar."
+    "beginnerTip": "Aprende primero su combo de 10 golpes manteniendo pulsado el botón A para castigar sin fallar.",
+    "killMoves": [
+      "Electric Wind God Fist -> Up Smash",
+      "Rage Drive",
+      "Dragon Uppercut"
+    ],
+    "oosMove": "Up-B (Rising Uppercut)",
+    "recoveryTip": "Usa ataques especiales con avance hacia adelante para impulsarte.",
+    "strongAgainst": [
+      "Cualquiera que se descuide en combate cerrado 1v1"
+    ],
+    "vulnerableTo": [
+      "Campers a larga distancia y personajes con desarticulación"
+    ]
   },
   {
     "id": "sora",
@@ -3509,6 +4614,19 @@ window.CHARACTERS = [
     "cons": [
       "Muy ligero y flotante: puede sufrir para descender rápidamente"
     ],
-    "beginnerTip": "Combina Up-B seguido inmediatamente de Side-B (Sonic Blade) para volver desde cualquier rincón del abismo."
+    "beginnerTip": "Combina Up-B seguido inmediatamente de Side-B (Sonic Blade) para volver desde cualquier rincón del abismo.",
+    "killMoves": [
+      "Forward Smash (Corte Potente)",
+      "Back Air (Golpe de Espalda)",
+      "Up-Air en Techo"
+    ],
+    "oosMove": "Up-B o Shield Grab (Agarre tras bloqueo)",
+    "recoveryTip": "Aprovecha el alcance de tu espada para cortar a rivales que intenten interceptarte.",
+    "strongAgainst": [
+      "Luchadores de poco rango y brawlers cuerpo a cuerpo"
+    ],
+    "vulnerableTo": [
+      "Zoners de proyectiles pesados a larga distancia"
+    ]
   }
 ];
